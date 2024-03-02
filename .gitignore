@@ -203,7 +203,7 @@ vignettes/*.pdf
 .Renviron
 
 # pkgdown site
-docs/
+# docs/ - I want my docs in git :)
 
 # translation temp files
 po/*~
