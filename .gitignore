@@ -210,3 +210,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+# my
+.idea/*
+.obsidian/*
+.obsidian/workspace.json
