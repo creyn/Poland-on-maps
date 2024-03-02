@@ -21,3 +21,18 @@ With this project I want:
 - Learn where to find interesting data that can be presented on maps
 - Learn Python and R
 
+# Map ideas
+
+List of map views that I want to create:
+
+- [x] Poland river basins from Milos tutorial
+- [ ] Poland borders
+- [ ] Poland borders with main rivers
+- [ ] Poland terrain elevations
+- [ ] Poland regions
+- [ ] Poland elections
+- [ ] Poland roads
+- [ ] Poland railroads
+- [ ] Poland lighthouses
+- [ ] Poland metro lines
+- [ ] TBC ...
