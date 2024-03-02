@@ -6,6 +6,8 @@
 #                 2023/11/21
 ###################################################
 
+print(">>>>> installing libs...")
+
 libs <- c(
     "tidyverse", "sf", "giscoR",
     "elevatr", "terra", "rayshader"
@@ -17,24 +19,37 @@ installed_libs <- libs %in% rownames(
 
 if (any(installed_libs == F)) {
     install.packages(
-        libs[!installed_libs]
+        libs[!installed_libs], repos='http://cran.us.r-project.org'
     )
 }
+
+print(">>>>> loading libs...")
 
 invisible(lapply(
     libs, library,
     character.only = T
 ))
 
+print(">>>>> using S2...")
+
 sf::sf_use_s2(F)
+
+print(">>>>> creating data folder...")
+
+data_folder <- "script-big-data"
+dir.create(data_folder)
 
 # 1. COUNTRY SF
 #---------------
+
+print(">>>>> loading gisco countries...")
 
 country_sf <- giscoR::gisco_get_countries(
     country = "PL",
     resolution = "1"
 )
+
+print(">>>>> calculating bbox...")
 
 country_bbox <- sf::st_bbox(
     country_sf
@@ -43,20 +58,31 @@ country_bbox <- sf::st_bbox(
 # 2. GET RIVERS
 #--------------
 
+print(">>>>> downloading rivers.....")
+
 url <- "https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_eu_shp.zip"
+url_destpath <- paste(data_folder, basename(url), sep = "/")
 
-download.file(
-    url = url,
-    destfile = basename(url),
-    mode = "wb"
-)
+if (! file.exists(url_destpath)) {
+	download.file(
+		url = url,
+		destfile = url_destpath,
+		mode = "wb"
+	)
 
-unzip(basename(url))
+	unzip(
+		paste(data_folder, basename(url), sep="/"),
+		exdir = data_folder
+	)
+}
+
 filename <- list.files(
-    path = "HydroRIVERS_v10_eu_shp",
+    path = paste(data_folder, "HydroRIVERS_v10_eu_shp", sep = "/"),
     pattern = ".shp",
     full.names = T
 )
+
+print(">>>>> filtering PL wkt")
 
 print(country_bbox)
 
@@ -74,26 +100,40 @@ country_rivers <- sf::st_read(
     wkt_filter = bbox_wkt
 )
 
+print(">>>>> plotting...")
+
 plot(sf::st_geometry(country_sf), col = "red")
 plot(sf::st_geometry(country_rivers), add = T)
 
 # 3. GET BASINS
 #---------------
 
+print(">>>>> downloading basins...")
+
 url <- "https://data.hydrosheds.org/file/HydroBASINS/standard/hybas_eu_lev04_v1c.zip"
+url_destpath <- paste(data_folder, basename(url), sep = "/")
 
-download.file(
-    url = url,
-    destfile = basename(url),
-    mode = "wb"
-)
+if(! file.exists(url_destpath)) {
+	download.file(
+		url = url,
+		destfile =  url_destpath,
+		mode = "wb"
+	)
 
-list.files()
+	list.files(
+		path = data_folder
+	)
 
-unzip(basename(url))
+	unzip(
+		paste(data_folder, basename(url), sep = "/"),
+		exdir = data_folder
+	)
+}
+
+print(">>>>> calculating basins...")
 
 country_basin <- sf::st_read(
-    "hybas_eu_lev04_v1c.shp"
+	paste(data_folder, "hybas_eu_lev04_v1c.shp", sep="/")
 ) |>
     sf::st_intersection(country_sf) |>
     dplyr::select(HYBAS_ID)
@@ -101,15 +141,21 @@ country_basin <- sf::st_read(
 # 4. CLIP RIVERS TO BASINS
 #-------------------------
 
+print(">>>>> clipping rivers to basins...")
+
 country_river_basin <- sf::st_intersection(
     country_rivers,
     country_basin
 )
 
+print(">>>>> deduplicating basins...")
+
 unique(country_river_basin$HYBAS_ID)
 
 # 5. PALETTE
 #-----------
+
+print(">>>> creating palette...")
 
 palette <- hcl.colors(
     n = 10,
@@ -121,9 +167,13 @@ palette <- hcl.colors(
 #     palette
 # )(15)
 
+print(">>>> deduplicating palette...")
+
 names(palette) <- unique(
     country_river_basin$HYBAS_ID
 )
+
+print(">>>>> mutating palette...")
 
 pal <- as.data.frame(
     palette
@@ -135,11 +185,15 @@ pal <- as.data.frame(
         HYBAS_ID = as.numeric(HYBAS_ID)
     )
 
+print(">>>>> applying palette?...")
+
 country_river_basin_pal <- country_river_basin |>
     dplyr::left_join(
         pal,
         by = "HYBAS_ID"
     )
+
+print(">>>>> transforming palette...")
 
 crs_lambert <- "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +datum=WGS84 +units=m +no_frfs"
 
@@ -158,7 +212,11 @@ country_basin_pal <- sf::st_transform(
 # 6. WIDTH
 #----------
 
+print(">>>>> deduplicating basins flow...")
+
 unique(country_river_basin_pal$ORD_FLOW)
+
+print(">>>>> mutating rivers width...")
 
 country_river_width <- country_river_basin_pal |>
     dplyr::mutate(
@@ -181,12 +239,17 @@ country_river_width <- country_river_basin_pal |>
 # 7. DEM
 #-------
 
+print(">>>>> rastering elevation...")
+
 elevation_raster <- elevatr::get_elev_raster(
     locations = country_sf,
     z = 8, clip = "locations"
 ) |>
     terra::rast() |>
     terra::project(crs_lambert)
+
+
+print(">>>>> rayshading to matrix...")
 
 elevation_matrix <- rayshader::raster_to_matrix(
     elevation_raster
@@ -195,8 +258,12 @@ elevation_matrix <- rayshader::raster_to_matrix(
 # 8. RENDER SCENE
 #----------------
 
+print(">>>>> calculating h w...")
+
 h <- nrow(elevation_raster)
 w <- ncol(elevation_raster)
+
+print(">>>>> rendering scene...")
 
 elevation_matrix |>
     rayshader::height_shade(
@@ -240,6 +307,8 @@ elevation_matrix |>
         phi = 85,
         theta = 0
     )
+	
+	print(">>>>> rendering camera...")
 
     rayshader::render_camera(
         phi = 89,
@@ -250,19 +319,26 @@ elevation_matrix |>
 # 9. RENDER OBJECT
 #-----------------
 
-u <- "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/limpopo_golf_course_4k.hdr"
+print(">>>>> downloading lighting...")
 
-download.file(
-    url = u,
-    destfile = basename(u),
-    mode = "wb"
-)
+url <- "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/limpopo_golf_course_4k.hdr"
+url_destpath <- paste(data_folder, basename(url), sep = "/")
+
+if(! file.exists(url_destpath)) {
+	download.file(
+		url = url,
+		destfile = url_destpath,
+		mode = "wb"
+	)
+}
+
+print(">>>>> rendering highquality...")
 
 rayshader::render_highquality(
     filename = "poland-3d-river-basins.png",
     preview = T,
     light = F,
-    environment_light = basename(u),
+    environment_light = url_destpath,
     rotate_env = 0,
     intensity_env = .85,
     ground_material = rayrender::diffuse(
@@ -273,3 +349,5 @@ rayshader::render_highquality(
     width = w,
     height = h
 )
+
+print(">>>>> done.")
