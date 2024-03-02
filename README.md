@@ -21,6 +21,12 @@ With this project I want:
 - Learn where to find interesting data that can be presented on maps
 - Learn Python and R
 
+## Experiments
+
+First experiment that I want to do is to write a journal about my learning process. I am using the [Obsidian](https://obsidian.md/) app.
+
+The journal can be found here: [docs / journal](docs/journal/)
+
 # Map ideas
 
 List of map views that I want to create:

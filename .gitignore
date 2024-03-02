@@ -216,3 +216,4 @@ rsconnect/
 .idea/*
 .obsidian/*
 .obsidian/workspace.json
+.obsidian/app.json
