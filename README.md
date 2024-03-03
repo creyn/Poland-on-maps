@@ -2,6 +2,7 @@
 
 Nice maps of Poland created with R and Python.
 
+![02-Poland-borders](src/02-Poland-borders/02-Poland-borders.png)
 ## About
 
 I always wanted to create nice maps that I've seen all over the internet. From what I know most of them are done in Python and R
@@ -32,7 +33,7 @@ The journal can be found here: [docs / journal](docs/journal/)
 List of map views that I want to create:
 
 - [x] Poland river basins from Milos tutorial ([01 - tutorial - river basins](docs/01%20-%20tutorial%20-%20river%20basins.md))
-- [ ] Poland borders
+- [x] Poland borders ([02 - Poland borders](docs/02%20-%20Poland%20borders.md))
 - [ ] Poland borders with main rivers
 - [ ] Poland terrain elevations
 - [ ] Poland regions
