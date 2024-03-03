@@ -31,7 +31,7 @@ The journal can be found here: [docs / journal](docs/journal/)
 
 List of map views that I want to create:
 
-- [x] Poland river basins from Milos tutorial
+- [x] Poland river basins from Milos tutorial ([01 - tutorial - river basins](docs/01%20-%20tutorial%20-%20river%20basins.md))
 - [ ] Poland borders
 - [ ] Poland borders with main rivers
 - [ ] Poland terrain elevations
