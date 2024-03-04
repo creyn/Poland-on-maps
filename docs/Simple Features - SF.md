@@ -1,0 +1,5 @@
+https://en.wikipedia.org/wiki/Simple_Features
+
+>**Simple Features** (officially **Simple Feature Access**) is a set of standards that specify a common storage and access model of [geographic features](https://en.wikipedia.org/wiki/Geographic_features "Geographic features") made of mostly two-dimensional geometries (point, line, polygon, multi-point, multi-line, etc.) used by [geographic databases](https://en.wikipedia.org/wiki/Geographic_database "Geographic database") and [geographic information systems](https://en.wikipedia.org/wiki/Geographic_information_system "Geographic information system"). It is formalized by both the [Open Geospatial Consortium](https://en.wikipedia.org/wiki/Open_Geospatial_Consortium "Open Geospatial Consortium") (OGC) and the [International Organization for Standardization](https://en.wikipedia.org/wiki/International_Organization_for_Standardization "International Organization for Standardization") (ISO).
+
+Implementation: [Simple Features for R - SF package](Simple%20Features%20for%20R%20-%20SF%20package.md)

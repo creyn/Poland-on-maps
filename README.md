@@ -36,7 +36,7 @@ List of map views that I want to create:
 - [x] Poland borders ([02 - Poland borders](docs/02%20-%20Poland%20borders.md))
 - [ ] Poland borders with main rivers
 - [ ] Poland terrain elevations
-- [ ] Poland regions
+- [x] Poland regions ([2024-03-04](docs/journal/2024-03-04.md))
 - [ ] Poland elections
 - [ ] Poland roads
 - [ ] Poland railroads
