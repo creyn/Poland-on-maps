@@ -43,3 +43,62 @@ List of map views that I want to create:
 - [ ] Poland lighthouses
 - [ ] Poland metro lines
 - [ ] TBC ...
+
+# How to run scripts
+
+The projects provides a Docker image that can be used to generate maps if you don't have the [R language project](docs/R%20language%20project.md) environment.
+
+## Docker
+
+The image is based on the https://rocker-project.org/ image and provides different methods to interact with R.
+
+```bash
+git clone https://github.com/creyn/Poland-on-maps.git
+cd Poland-on-maps
+```
+
+To build the image:
+```bash
+docker build -t poland-on-maps .
+```
+
+### Run RStudio
+
+After starting the image:
+```bash
+docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 poland-on-maps
+```
+
+You can open the [RStudio](docs/RStudio.md) in the browser `http://localhost:8787` with the user `rstudio` and password `yourpassword`.
+
+### Run into bash 
+
+You can start the image and be able to run maps scripts from bash:
+```bash
+docker run -it -v ${PWD}:/home/docker -w /home/docker -e POM_DATA_FOLDER=/home/docker/data -e POM_OUTPUT_MAPS_FOLDER=/home/docker/output poland-on-maps bash
+```
+
+In bash you can run each script using the installed `Rscript` tool:
+```bash
+Rscript src/02-Poland-borders/02-Poland-borders.R
+```
+```bash
+Rscript src/03-Poland-regions/03-Poland-regions.R
+```
+
+**Parameters:**
+
+`-i`: interactive, Keep STDIN open even if not attached
+`-t`: Allocate a pseudo-TTY
+`-v`: Bind mount a volume
+`-e`: Set environment variables
+
+**Description:**
+
+This command will:
+- mount the current directory (on Windows) so the project folder as `/home/docker`, so all scripts and files will be available in `bash `
+- set `/home/docker` as current working directory so you don't have to `cd` into it
+- set optional `POM_DATA_FOLDER` for scripts to save downloaded dataset files (those can be big files) in the mounted folder `data` suf-folder - if not set, the default would be each script `script-big-data` sub-folder
+- set optional `POM_OUTPUT_MAPS_FOLDER` for scripts to save output final maps in the mounted folder `output` sub-folder - if not set, the default would be each script folder
+- starts `bash` so you can start typing
+
