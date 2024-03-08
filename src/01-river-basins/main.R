@@ -10,7 +10,7 @@ print(">>>>> installing libs...")
 
 libs <- c(
     "tidyverse", "sf", "giscoR",
-    "elevatr", "terra", "rayshader"
+    "elevatr", "terra", "rayshader", "here"
 )
 
 installed_libs <- libs %in% rownames(
@@ -22,7 +22,7 @@ if (any(installed_libs == F)) {
         libs[!installed_libs], repos='http://cran.us.r-project.org'
     )
 }
-
+setwd(here::here())
 print(">>>>> loading libs...")
 
 invisible(lapply(
@@ -34,10 +34,23 @@ print(">>>>> using S2...")
 
 sf::sf_use_s2(F)
 
-print(">>>>> creating data folder...")
-
-data_folder <- "script-big-data"
+print(">>>>> creating folders...")
+script_folder <- "src/01-river-basins/"
+data_folder <- paste(script_folder, "script-big-data", sep = "/")
+env_data_folder <- Sys.getenv("POM_DATA_FOLDER")
+if(env_data_folder != "") {
+	data_folder <- env_data_folder
+}
 dir.create(data_folder)
+print(paste(">>>>> Data folder setup to: ", data_folder))
+
+output_maps_folder <- script_folder
+env_maps_folder <- Sys.getenv("POM_OUTPUT_MAPS_FOLDER")
+if(env_maps_folder != "") {
+	output_maps_folder <- env_maps_folder
+}
+dir.create(output_maps_folder)
+print(paste(">>>>> Output maps folder setup to: ", output_maps_folder))
 
 # 1. COUNTRY SF
 #---------------
@@ -333,9 +346,9 @@ if(! file.exists(url_destpath)) {
 }
 
 print(">>>>> rendering highquality...")
-
+final_filepath <- paste(data_folder, "poland-3d-river-basins.png", sep = "/")
 rayshader::render_highquality(
-    filename = "poland-3d-river-basins.png",
+    filename = final_filepath,
     preview = T,
     light = F,
     environment_light = url_destpath,
