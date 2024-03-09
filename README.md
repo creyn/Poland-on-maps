@@ -48,6 +48,14 @@ List of map views that I want to create:
 
 The projects provides a Docker image that can be used to generate maps if you don't have the [R language project](docs/R%20language%20project.md) environment.
 
+## Official "Poland on maps" Docker image
+
+The image used in this project is quite custom (based on the [Rocker project](docs/Rocker%20project.md)) image but also extended with few R packages. It is available on the [Docker Hub](docs/Docker%20Hub.md) for you to download.
+
+```bash
+docker pull creyn/poland-on-maps:latest
+```
+
 ## Docker
 
 The image is based on the https://rocker-project.org/ image and provides different methods to interact with R.
@@ -71,12 +79,14 @@ docker run --rm -ti -e PASSWORD=yourpassword -p 8787:8787 poland-on-maps
 
 You can open the [RStudio](docs/RStudio.md) in the browser `http://localhost:8787` with the user `rstudio` and password `yourpassword`.
 
-### Run into bash 
+### Execute scripts to create maps
 
 You can start the image and be able to run maps scripts from bash:
 ```bash
 docker run -it -v ${PWD}:/home/docker -w /home/docker -e POM_DATA_FOLDER=/home/docker/data -e POM_OUTPUT_MAPS_FOLDER=/home/docker/output poland-on-maps bash
 ```
+
+This will mount the project folder into the container so you can use your favourite IDE to change the "R" scripts and the run the new version from the bash in container as shown below.
 
 In bash you can run each script using the installed `Rscript` tool:
 ```bash
@@ -88,10 +98,10 @@ Rscript src/03-Poland-regions/03-Poland-regions.R
 
 **Parameters:**
 
-`-i`: interactive, Keep STDIN open even if not attached
-`-t`: Allocate a pseudo-TTY
-`-v`: Bind mount a volume
-`-e`: Set environment variables
+- `-i`: interactive, Keep STDIN open even if not attached
+- `-t`: Allocate a pseudo-TTY
+- `-v`: Bind mount a volume
+- `-e`: Set environment variables
 
 **Description:**
 
