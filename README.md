@@ -112,3 +112,7 @@ This command will:
 - set optional `POM_OUTPUT_MAPS_FOLDER` for scripts to save output final maps in the mounted folder `output` sub-folder - if not set, the default would be each script folder
 - starts `bash` so you can start typing
 
+# Discovered interesting GIS datasets
+
+![Datasets](docs/Public%20datasets.md#Datasets)
+
