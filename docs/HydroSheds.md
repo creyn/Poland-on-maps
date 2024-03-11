@@ -1,5 +1,7 @@
 #dataset
 
+https://www.hydrosheds.org/
+
 Rivers:
 https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_eu_shp.zip
 
