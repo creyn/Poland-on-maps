@@ -1,0 +1,1 @@
+A data frame is a rectangular collection of variables (in the columns) and observations (in the rows)
