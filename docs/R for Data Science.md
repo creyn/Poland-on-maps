@@ -12,4 +12,4 @@ https://r4ds.hadley.nz/
 Tabular data is _tidy_ if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.
 [Tidyverse - tibble data frame](Tidyverse%20-%20tibble%20data%20frame.md)
 [ggplot2](ggplot2.md)
-
+[facets](facets.md)

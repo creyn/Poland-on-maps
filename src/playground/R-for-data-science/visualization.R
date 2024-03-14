@@ -84,3 +84,42 @@ ggplot(palmerpenguins::penguins, aes(x = species)) +
 
 ggplot(diamonds, aes(x = carat)) +
   geom_histogram(binwidth = 0.01)
+
+
+ggplot(palmerpenguins::penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+
+ggplot(palmerpenguins::penguins, aes(x = body_mass_g, color = species)) +
+  geom_density(linewidth = 0.75)
+
+ggplot(palmerpenguins::penguins, aes(x = species, fill = island)) +
+  geom_bar(position = "fill")
+
+
+ggplot(palmerpenguins::penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  facet_wrap(~island)
+
+# exercises
+
+mpg
+glimpse(mpg)
+
+ggplot(mpg, aes(x = displ, y = hwy, color = cty, size = cty, linewidth = cty)) +
+  geom_point()
+
+ggplot(palmerpenguins::penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  facet_wrap(~species)
+
+
+ggplot(
+  data = palmerpenguins::penguins,
+  mapping = aes(
+    x = bill_length_mm, y = bill_depth_mm,
+    color = species, shape = species
+  )
+) +
+  geom_point()
+
+ggsave(filename = "src/playground/R-for-data-science/penguins.png")
