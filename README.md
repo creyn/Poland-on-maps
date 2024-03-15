@@ -35,7 +35,7 @@ List of map views that I want to create:
 
 - [x] Poland river basins from Milos tutorial ([01 - tutorial - river basins](docs/01%20-%20tutorial%20-%20river%20basins.md))
 - [x] Poland borders ([02 - Poland borders](docs/02%20-%20Poland%20borders.md))
-- [ ] Poland borders with main rivers
+- [x] Poland borders with main river
 - [ ] Poland terrain elevations
 - [x] Poland regions ([2024-03-04](docs/journal/2024-03-04.md))
 - [ ] Poland elections
