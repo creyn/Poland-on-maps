@@ -84,6 +84,10 @@ ggplot() +
 
 ggsave(paste(output_maps_folder, "04-Poland-rivers.png", sep = "/"))
 
+short_rivers <- rivers[rivers$DLUG > 1 & rivers$DLUG < 5, ]
+ggplot() +
+	geom_sf(data = short_rivers)
+
 print(">>>>> Done.")
 
 # to run using Docker
