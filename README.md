@@ -2,8 +2,7 @@
 
 Nice maps of Poland created with R and Python.
 
-![02-Poland-borders](src/02-Poland-borders/02-Poland-borders.png)
-![04-Poland-rivers](output/04-Poland-rivers.png)
+![05-Poland-Vistula-Warsaw-region](output/05-Poland-Vistula-Warsaw-region.png)
 ## About
 
 I always wanted to create nice maps that I've seen all over the internet. From what I know most of them are done in Python and R
@@ -43,6 +42,9 @@ List of map views that I want to create:
 - [ ] Poland railroads
 - [ ] Poland lighthouses
 - [ ] Poland metro lines
+- [x] Poland + Vistula + Warsaw ([2024-03-17](docs/journal/2024-03-17.md))
+- [x] Vistula + Warsaw ([2024-03-17](docs/journal/2024-03-17.md))
+- [x] Vistula + Krakow  ([2024-03-17](docs/journal/2024-03-17.md))
 - [ ] TBC ...
 
 # How to run scripts

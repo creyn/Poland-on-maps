@@ -1,5 +1,5 @@
 [[<% tp.date.yesterday() %>]] | [[<% tp.date.tomorrow() %>]]
-#journal
+#journal [README](../../README.md)
 
 ---
 **<% tp.date.now("dddd") %>**
