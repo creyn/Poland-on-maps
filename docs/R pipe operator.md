@@ -17,3 +17,5 @@ do.call(rbind,lapply(split(iris[-5],iris$Species),min))
 
 // https://stackoverflow.com/questions/67744604/what-does-pipe-greater-than-mean-in-r
 
+>The easiest way to pronounce the pipe is “then”.
+
