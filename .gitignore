@@ -219,3 +219,6 @@ rsconnect/
 .obsidian/app.json
 src/03-Poland-regions/script-big-data
 data
+**/script-big-data/**
+.obsidian
+Rplots.pdf
