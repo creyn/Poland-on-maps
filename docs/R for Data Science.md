@@ -14,6 +14,8 @@ Tabular data is _tidy_ if each value is placed in its own “cell”, each var
 [ggplot2](ggplot2.md)
 [facets](facets.md)
 [data transformation](data%20transformation.md)
+[data tidying](data%20tidying.md)
+[data import](data%20import.md)
 
 >You can **c**ombine multiple elements into a vector with `[c()](https://rdrr.io/r/base/c.html)`:
 ```r
