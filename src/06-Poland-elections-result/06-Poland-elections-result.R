@@ -89,6 +89,16 @@ filename_results_voivodeship <- list.files(
 )
 
 results_csv <- read_csv2(filename_results_voivodeship)
+results_v <- results_csv |> janitor::clean_names() |>
+	mutate(
+		winner = ifelse(andrzej_sebastian_duda > rafal_kazimierz_trzaskowski, "Andrzej Sebastian Duda", "Rafal Kazimierz Trzaskowski")
+	)
+
+view(results_v)
+
+single <-  filter(results_v, kod_teryt == "320000")
+single$winner
+
 results <- results_csv |> janitor::clean_names() |>
 	mutate(
 		wojewodztwo = factor(wojewodztwo),
