@@ -89,15 +89,6 @@ filename_results_voivodeship <- list.files(
 )
 
 results_csv <- read_csv2(filename_results_voivodeship)
-results_v <- results_csv |> janitor::clean_names() |>
-	mutate(
-		winner = ifelse(andrzej_sebastian_duda > rafal_kazimierz_trzaskowski, "Andrzej Sebastian Duda", "Rafal Kazimierz Trzaskowski")
-	)
-
-view(results_v)
-
-single <-  filter(results_v, kod_teryt == "320000")
-single$winner
 
 results <- results_csv |> janitor::clean_names() |>
 	mutate(
@@ -138,6 +129,37 @@ ggplot(
 			"Rafal Kazimierz Trzaskowski"
 		)
 	) +
-	labs(caption = "Poland's presidential elections 2022 results")
+	labs(caption = "Poland's presidential elections 2020 results")
 
-# print(">>>>> Done.")
+results_voivodeships_with_winner <- results_csv |> janitor::clean_names() |>
+	mutate(
+		winner = ifelse(andrzej_sebastian_duda > rafal_kazimierz_trzaskowski, "Andrzej Sebastian Duda", "Rafal Kazimierz Trzaskowski")
+	)
+
+voivodeships <- st_read(filename_shapes_voivodeship, options = "ENCODING=UTF8")
+
+voivodeships_with_teryt <- voivodeships |>
+	mutate(
+		kod_teryt = paste(JPT_KOD_JE, "0000", sep = "")
+	)
+
+merged <- merge(voivodeships_with_teryt, results_voivodeships_with_winner, "kod_teryt")
+# view(merged)
+
+ggplot() +
+	geom_sf(data = merged, aes(fill = winner)) +
+	theme_void(base_size = 20) +
+	scale_fill_manual(
+		values = c(
+			"Andrzej Sebastian Duda" = "#0073e6",
+			"Rafal Kazimierz Trzaskowski" = "#e6308a"
+		),
+		labels = c(
+			"Andrzej Sebastian Duda",
+			"Rafal Kazimierz Trzaskowski"
+		)
+	) +
+	labs(caption = "Poland's presidential elections 2020 results")
+
+print(">>>>> Done.")
+
