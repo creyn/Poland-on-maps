@@ -148,7 +148,7 @@ merged <- merge(voivodeships_with_teryt, results_voivodeships_with_winner, "kod_
 
 ggplot() +
 	geom_sf(data = merged, aes(fill = winner)) +
-	theme_void(base_size = 20) +
+	theme_bw() +
 	scale_fill_manual(
 		values = c(
 			"Andrzej Sebastian Duda" = "#0073e6",
@@ -159,7 +159,15 @@ ggplot() +
 			"Rafal Kazimierz Trzaskowski"
 		)
 	) +
-	labs(caption = "Poland's presidential elections 2020 results")
+	labs(caption = "Poland's 2020 presidential elections results per voivodeship")
+
+ggsave(paste(output_maps_folder, "06-Poland-elections-result-per-voivodeship.png", sep = "/"))
 
 print(">>>>> Done.")
 
+# to run using Docker
+# docker pull creyn/poland-on-maps:latest
+# OR
+# docker build -t poland-on-maps .
+# docker run -it -v ${PWD}:/home/docker -w /home/docker -e POM_DATA_FOLDER=/home/docker/data -e POM_OUTPUT_MAPS_FOLDER=/home/docker/output poland-on-maps bash
+# Rscript src/06-Poland-elections-result/06-Poland-elections-result.R
