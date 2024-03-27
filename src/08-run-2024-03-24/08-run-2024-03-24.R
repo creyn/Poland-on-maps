@@ -39,12 +39,18 @@ results <- table |> janitor::clean_names() |>
     time = as.difftime(czas_netto, units = "secs")
   )
 
-view(results)
+results_35260 <- results |>
+  filter(
+    numer == 35260
+  )
+
+view(results_35260)
 # glimpse(results)
 
 ggplot(data = results, mapping = aes(x = time, fill = sex)) +
   geom_histogram(binwidth = 30) +
-  facet_wrap("sex")
+  geom_vline(xintercept = results_35260$time)
+  # facet_wrap("sex")
 
 # # results |>
 # #   arrange(miejsce_plec)
