@@ -24,8 +24,8 @@ setwd(here::here())
 library(rvest)
 
 # results <- read_html("https://live.sts-timing.pl/pw2024/index.php?dystans=2")
-results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=1&dystans=2&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&show%5B%5D=12&show%5B%5D=13&show%5B%5D=14&sort=") # 5 km
-# results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=1&dystans=1&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&show%5B%5D=12&show%5B%5D=13&show%5B%5D=14&sort=") # 21 km
+# results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=1&dystans=2&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&show%5B%5D=12&show%5B%5D=13&show%5B%5D=14&sort=") # 5 km
+results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=1&dystans=1&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&show%5B%5D=12&show%5B%5D=13&show%5B%5D=14&sort=") # 21 km
 # results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=4&dystans=4&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&sort=") # 5 km wheelchairs
 # results <- read_html("https://live.sts-timing.pl/pw2024/wyniki.php?search=1&dystans=3&dystans=3&filter%5Bcountry%5D=&filter%5Bcity%5D=&filter%5Bteam%5D=&filter%5Bsex%5D=&filter%5Bcat%5D=&show%5B%5D=1&show%5B%5D=2&show%5B%5D=3&show%5B%5D=4&show%5B%5D=5&show%5B%5D=6&show%5B%5D=7&show%5B%5D=8&show%5B%5D=9&show%5B%5D=10&show%5B%5D=11&show%5B%5D=12&show%5B%5D=13&show%5B%5D=14&sort=") # 21 km wheelchairs
 
@@ -39,18 +39,29 @@ results <- table |> janitor::clean_names() |>
     time = as.difftime(czas_netto, units = "secs")
   )
 
-results_35260 <- results |>
-  filter(
-    numer == 35260
+results_group_stats <- results |>
+  group_by(sex) |>
+  summarise(
+    mean = mean(time),
+    median = median(time)
   )
 
-view(results_35260)
+results_group_stats
+
+# results_35260 <- results |>
+#   filter(
+#     numer == 35260
+#   )
+
+# view(results_35260)
 # glimpse(results)
 
 ggplot(data = results, mapping = aes(x = time, fill = sex)) +
   geom_histogram(binwidth = 30) +
-  geom_vline(xintercept = results_35260$time)
-  # facet_wrap("sex")
+  # geom_vline(xintercept = results_35260$time)
+  geom_vline(data = results_group_stats, aes(xintercept = mean)) +
+  geom_vline(data = results_group_stats, aes(xintercept = median), color = "red") +
+  facet_wrap(~sex)
 
 # # results |>
 # #   arrange(miejsce_plec)
