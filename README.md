@@ -47,6 +47,7 @@ List of map views that I want to create:
 - [x] Vistula + Warsaw ([2024-03-17](docs/journal/2024-03-17.md))
 - [x] Vistula + Krakow  ([2024-03-17](docs/journal/2024-03-17.md))
 - [x] Map with KML track data ([2024-03-28](docs/journal/2024-03-28.md))
+- [x] Poland's airports ([2024-04-05](docs/journal/2024-04-05.md))
 - [ ] TBC ...
 
 # How to run scripts
