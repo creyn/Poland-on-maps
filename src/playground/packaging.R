@@ -4,5 +4,12 @@
 library(here)
 setwd(here::here())
 
-options(usethis.allow_nested_projects = TRUE)
-devtools::create("polandon2maps")
+# this somehow doesn't work, I've created package from PyCharm new R package project
+# options(usethis.allow_nested_projects = TRUE)
+# devtools::create("polandon2maps")
+
+# now load my package
+install.packages("src/packages/POMUtils_1.0.tar.gz")
+# library(POMUtils)
+
+POMUtils::hello('test')
