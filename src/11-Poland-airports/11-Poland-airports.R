@@ -1,7 +1,7 @@
 print("Create map of Poland's airports")
 
 install.packages("src/packages/POMUtils_1.0.tar.gz")
-output_maps_folder <- POMUtils::setup(
+folders <- POMUtils::setup(
   script_folder = "src/11-Poland-airports/",
   packages = c("sf", "giscoR", "here", "tidyverse")
 )
@@ -26,6 +26,6 @@ ggplot(country_sf) +
     caption = giscoR::gisco_attributions()
   )
 
-ggsave(paste(output_maps_folder, "11-Poland-airports.png", sep = "/"))
+ggsave(paste(folders$final_map_folder, "11-Poland-airports.png", sep = "/"))
 
 print(">>>>> Done.")
