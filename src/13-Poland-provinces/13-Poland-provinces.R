@@ -46,7 +46,12 @@ ggplot() +
     geom_sf(data = provinces, aes(fill = KOD_TYPE)) + 
     geom_sf(data = regions, fill = alpha("white", 0.3)) +
     geom_sf(data = poland, fill = alpha("white", 0.1)) +
-    theme_bw()
+    theme_bw() +
+    labs(
+        title = "Poland's provinces",
+        fill = "Typ gminy",
+        caption = "data: https://www.gis-support.pl"
+    )
 
 ggsave(paste(folders$final_map_folder, "13-Poland-provinces.png", sep = "/"))
 
