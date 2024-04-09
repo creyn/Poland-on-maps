@@ -10,12 +10,17 @@ dataset_provinces <- POMUtils::fetch_zip_with_shp(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/gminy.zip"
 )
+dataset_powiaty <- POMUtils::fetch_zip_with_shp(
+  env_folders = folders,
+  dataset_url = "https://www.gis-support.pl/downloads/2022/powiaty.zip"
+)
 dataset_regions <- POMUtils::fetch_zip_with_shp(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
 )
 
 provinces <- st_read(dataset_provinces$final_filename_shapes)
+powiaty <- st_read(dataset_powiaty$final_filename_shapes)
 regions <- st_read(dataset_regions$final_filename_shapes)
 
 poland <- gisco_get_countries(
@@ -39,12 +44,14 @@ provinces <- provinces |>
 
 # both datasets need clipping to fit borders !
 regions <- st_intersection(regions, poland)
+powiaty <- st_intersection(powiaty, poland)
 provinces <- st_intersection(provinces, poland)
 
 print(">>>>> Mapping ...")
 ggplot() +
     geom_sf(data = provinces, aes(fill = KOD_TYPE)) + 
-    geom_sf(data = regions, fill = alpha("white", 0.3)) +
+    geom_sf(data = powiaty, fill = alpha("white", 0.1), color = "black", size = 1) +
+    geom_sf(data = regions, fill = alpha("white", 0.1), color = "black", size = 1) +
     geom_sf(data = poland, fill = alpha("white", 0.1)) +
     theme_bw() +
     labs(
