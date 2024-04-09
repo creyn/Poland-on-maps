@@ -50,12 +50,12 @@ provinces <- st_intersection(provinces, poland)
 print(">>>>> Mapping ...")
 ggplot() +
     geom_sf(data = provinces, aes(fill = KOD_TYPE)) + 
-    geom_sf(data = powiaty, fill = alpha("white", 0.1), color = "black", size = 1) +
-    geom_sf(data = regions, fill = alpha("white", 0.1), color = "black", size = 1) +
-    geom_sf(data = poland, fill = alpha("white", 0.1)) +
+    geom_sf(data = powiaty, fill = alpha("white", 0.1), color = "blue", size = 1) +
+    geom_sf(data = regions, fill = alpha("white", 0.2), color = alpha("black", 0.5), size = 1.5) +
+    geom_sf(data = poland, fill = alpha("white", 0.2)) +
     theme_bw() +
     labs(
-        title = "Poland's provinces",
+        title = "Gminy w Polsce",
         fill = "Typ gminy",
         caption = "data: https://www.gis-support.pl"
     )
