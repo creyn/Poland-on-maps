@@ -4,6 +4,7 @@ Nice maps of Poland created with R and Python.
 
 ![05-Poland-Vistula-Warsaw-region](output/05-Poland-Vistula-Warsaw-region.png)
 ![13-Poland-provinces](src/13-Poland-provinces/13-Poland-provinces.png)
+![wybory_samorzadowe_2024_wabik_kamila_gminy](src/wybory_samorzadowe_2024/wybory_samorzadowe_2024_wabik_kamila_gminy.png)
 ## About
 
 I always wanted to create nice maps that I've seen all over the internet. From what I know most of them are done in Python and R
@@ -50,6 +51,7 @@ List of map views that I want to create:
 - [x] Map with KML track data ([2024-03-28](docs/journal/2024-03-28.md))
 - [x] Poland's airports ([2024-04-05](docs/journal/2024-04-05.md))
 - [x] Poland's provinces (gminy) ([2024-04-08](docs/journal/2024-04-08.md))
+- [x] Poland's election result of one candidate ([2024-04-10](docs/journal/2024-04-10.md))
 - [ ] TBC ...
 
 # How to run scripts
