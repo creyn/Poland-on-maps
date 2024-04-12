@@ -1,4 +1,4 @@
-[[<% tp.date.yesterday() %>]] | [[<% tp.date.tomorrow() %>]]
+[<% tp.date.yesterday() %>](<% tp.date.yesterday() %>.md) | [<% tp.date.tomorrow() %>](<% tp.date.tomorrow() %>.md)
 #journal [README](../../README.md)
 
 ---
