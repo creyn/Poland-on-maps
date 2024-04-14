@@ -64,12 +64,30 @@ head(country_elevation_df)
 print(">>>>> 3. MAP")
 #---------
 
+# my colors - mostly gray 
+etopo <- read.csv(textConnection(
+"altitudes,colours
+10000,#FBFBFB
+4000,#864747
+3900,#7E4B11
+2000,#9B8411
+1900,#DDDDDD
+300,#DDDDDD
+0,#DDDDDD
+-1,#AFDCF4
+-12000,#090B6A
+"
+), stringsAsFactors=FALSE)
+etopo$altitudes01 <- scales::rescale(etopo$altitudes)
+
 get_elevation_map <- function(country_map) {
 
 	country_map <- ggplot() +
   		geom_tile(data = country_elevation_df, 
   			aes(x = x, y = y, fill = elevation)) +
-  		scale_fill_etopo() +
+  		# scale_fill_etopo() +
+        # scale_fill_distiller(palette = "Greys") +
+        scale_fill_gradientn(colours=etopo$colours, values=etopo$altitudes01, limits=range(etopo$altitudes)) +
   		coord_sf(crs = crsLONGLAT)+
   		theme_minimal() +
   		theme(text = element_text(family = "georg", color = "#22211d"),
@@ -102,6 +120,6 @@ country_map <- get_elevation_map()
 
 print(">>>>> saving")
 # ggsave(filename="italy_topo_map.png", width=7, height=8.5, dpi = 600, device='png', country_map)
-ggsave(filename="poland_topo_map.png", country_map)
+ggsave(filename="poland_topo_map_4.png", country_map)
 
 print(">>>>> done.")
