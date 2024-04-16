@@ -12,8 +12,13 @@ invisible(lapply(libs, library, character.only = T))
 
 suiz <- gisco_get_countries(country = "Poland", resolution = "03")
 
+
+# suiz <- st_crop(suiz, bbox_wkt)
+
 # get the DEM with
-mdt <- get_elev_raster(suiz, z = 10)
+# z = 11 too much memory on my laptop
+# mdt <- get_elev_raster(suiz, z = 5)
+mdt <- get_elev_raster(bbox_wkt, z = 5)
 
 # convert to terra and mask area of interest
 mdt <- rast(mdt) %>% 
@@ -79,6 +84,6 @@ hill_single <- shade(sl, asp,
       normalize= TRUE)
 
 # final hillshade 
-png("hillshade_PL.png")
+png("bbox_hillshade_PL_z5.png")
 plot(hill_single, col = grey(1:100/100))
 invisible(dev.off())
