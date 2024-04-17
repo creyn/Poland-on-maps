@@ -15,8 +15,6 @@ Main inspiration was the Twitter(X) [30 day map challenge](https://twitter.com/h
 
 Next there was [Milos](https://twitter.com/milos_agathon) that created map of river basins of Poland and provide a [YouTube tutorial](https://www.youtube.com/watch?v=fIOCVCxh2B8).
 
-So I have place to start.
-
 ## Goals
 
 With this project I want:
