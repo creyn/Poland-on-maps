@@ -7,7 +7,7 @@ Nice maps of Poland created with R.
 ![wybory_samorzadowe_2024_wabik_kamila_gminy](src/wybory_samorzadowe_2024/wybory_samorzadowe_2024_wabik_kamila_gminy.png)
 ## About
 
-I always wanted to create nice maps that I've seen all over the internet. From what I know most of them are done in Python and R
+I always wanted to create nice maps that I've seen all over the internet. Most of them are done in Python and R
 
 ## Inspiration
 
