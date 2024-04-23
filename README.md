@@ -51,7 +51,8 @@ List of map views that I want to create:
 - [x] Poland's provinces (gminy) ([2024-04-08](docs/journal/2024-04-08.md))
 - [x] Poland's election result of one candidate ([2024-04-10](docs/journal/2024-04-10.md))
 - [x] Poland's topographic map ([2024-04-12](docs/journal/2024-04-12.md))
-- [ ] Poland forests 
+- [ ] Poland forests
+- [ ] Poland castles
 - [ ] TBC ...
 
 # How to run scripts
