@@ -1,6 +1,6 @@
 # Poland-on-maps
 
-Nice maps of Poland created with R. 1🌐
+Nice maps of Poland created with R🌐
 
 ![05-Poland-Vistula-Warsaw-region](output/05-Poland-Vistula-Warsaw-region.png)
 ![13-Poland-provinces](src/13-Poland-provinces/13-Poland-provinces.png)
