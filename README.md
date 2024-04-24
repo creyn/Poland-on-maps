@@ -124,5 +124,6 @@ This command will:
 
 # Discovered interesting GIS datasets
 
+[Public datasets](docs/Public%20datasets.md)
 ![Datasets](docs/Public%20datasets.md#Datasets)
 
