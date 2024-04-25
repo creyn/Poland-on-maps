@@ -53,6 +53,7 @@ List of map views that I want to create:
 - [x] Poland's topographic map ([2024-04-12](docs/journal/2024-04-12.md))
 - [ ] Poland forests
 - [ ] Poland castles
+- [ ] Poland churches
 - [ ] TBC ...
 
 # How to run scripts
