@@ -6,25 +6,54 @@ folders <- POMUtils::setup(
   data_folder = "data/",
   packages = c("sf", "giscoR", "here", "tidyverse")
 )
-dataset <- POMUtils::fetch_zip_with_dataset(
-  env_folders = folders,
-  dataset_url = "http://envirosolutions.pl/dane/drogiPL.zip"
+
+country_sf <- giscoR::gisco_get_countries(
+    country = "PL",
+    resolution = "1"
 )
 
-roads <- st_read(dataset$final_filename_shapes)
-# print(unique(roads$fclass))
-# glimpse(roads)
-primary_roads <- roads |>
-  filter(fclass == "primary")
+print(">>>>> fetching roads.....")
+dataset <- POMUtils::fetch_zip_with_dataset(
+  env_folders = folders,
+  dataset_url = "http://envirosolutions.pl/dane/drogiPL.zip" # 370 MB
+)
+roads <- st_read(dataset$final_filename_shapes) # 580 MB
 
-print(">>>>> Mapping ...")
+print(">>>>> processing.....")
+glimpse(roads)
+print(unique(roads$fclass))
+
+# primary_roads <- roads |>
+#   filter(fclass == "primary")
+
+filtered_roads <- roads |>
+  # filter(fclass == "motorway" | fclass == "motorway_link" | fclass == "tertiary" | fclass == "secondary" | fclass == "primary" | fclass == "secondary_link" | fclass == "tertiary_link" | fclass == "primary_link")
+  # filter(fclass == "motorway" | fclass == "motorway_link" | fclass == "secondary" | fclass == "primary" | fclass == "secondary_link" | fclass == "primary_link")
+  filter(fclass == "motorway" | fclass == "motorway_link" | fclass == "primary" | fclass == "primary_link")
+  # filter(fclass == "motorway" | fclass == "motorway_link")
+
+st_crs(filtered_roads) <- st_crs(country_sf)
+
+filtered_roads <- st_intersection(filtered_roads, country_sf)
+
+# print(">>>>> Mapping ...")
 ggplot() +
-  geom_sf(data = roads)
+  geom_sf(data = country_sf) +
+  geom_sf(data = filtered_roads, aes(color = fclass)) +
+  theme_classic() +
+  labs(
+    title = "Polskie drogi",
+    shape = NULL,
+    color = "Typ",
+    caption = "dane: giscoR, envirosolutions"
+  )
 
 ggsave(paste(folders$final_map_folder, "12-Poland-roads.png", sep = "/"))
 print(">>>>> Done.")
 
-# map <- leaflet(shp) |>
-#   addProviderTiles(providers$CartoDB.PositronNoLabels) |>
-#   addPolylines()
-# map
+# to run using Docker
+# docker pull creyn/poland-on-maps:latest
+# OR
+# docker build -t poland-on-maps .
+# docker run -it -v ${PWD}:/home/docker -w /home/docker -e POM_DATA_FOLDER=/home/docker/data -e POM_OUTPUT_MAPS_FOLDER=/home/docker/output poland-on-maps bash
+# Rscript src/12-Poland-roads/12-Poland-roads.R
