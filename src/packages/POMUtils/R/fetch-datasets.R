@@ -1,6 +1,6 @@
-fetch_zip_with_shp <- function(env_folders, dataset_url) {
+fetch_zip_with_dataset <- function(env_folders, dataset_url, dataset_extension = ".shp") {
 
-  print(paste(">>>>> fetching dataset", dataset_url, " into ", env_folders$final_data_folder))
+  print(paste(">>>>> fetching dataset", dataset_url, "into", env_folders$final_data_folder, "load file with extension", dataset_extension))
 
   dataset_url_shapes <- dataset_url
   dataset_path_shapes <- paste(env_folders$final_data_folder, basename(dataset_url_shapes), sep = "/")
@@ -25,7 +25,7 @@ fetch_zip_with_shp <- function(env_folders, dataset_url) {
 
   final_filename_shapes <- list.files(
       path = dataset_folder_shapes,
-      pattern = ".shp",
+      pattern = dataset_extension,
       full.names = T
   )
 

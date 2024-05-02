@@ -1,6 +1,6 @@
 print("Create map of Poland with Vistula and Warsaw")
 
-install.packages("src/packages/POMUtils_1.0.tar.gz")
+install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
   script_folder = "src/05-Poland-Vistula-Warsaw/",
   data_folder = "data/",
@@ -8,14 +8,14 @@ folders <- POMUtils::setup(
 )
 
 print(">>>>> downloading rivers.....")
-dataset_rivers <- POMUtils::fetch_zip_with_shp(
+dataset_rivers <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "http://envirosolutions.pl/dane/rzekiPL.zip"
 )
 rivers <- st_read(dataset_rivers, options = "ENCODING=UTF8")
 
 print(">>>>> downloading regions.....")
-dataset_regions <- POMUtils::fetch_zip_with_shp(
+dataset_regions <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/gminy.zip"
 )

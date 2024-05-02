@@ -1,3 +1,2 @@
-export("hello")
 export("setup")
-export("fetch_zip_with_shp")
+export("fetch_zip_with_dataset")

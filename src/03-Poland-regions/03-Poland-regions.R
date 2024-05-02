@@ -1,13 +1,13 @@
 print("Create map of Poland regions")
 
-install.packages("src/packages/POMUtils_1.0.tar.gz")
+install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
   script_folder = "src/03-Poland-regions/",
   data_folder = "data/",
   packages = c("sf", "here", "tidyverse")
 )
 
-dataset_regions <- POMUtils::fetch_zip_with_shp(
+dataset_regions <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
 )

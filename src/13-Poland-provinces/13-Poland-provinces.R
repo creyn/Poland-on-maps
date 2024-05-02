@@ -1,20 +1,20 @@
 print(">>>>> Map Poland's provinces ...")
 
-install.packages("src/packages/POMUtils_1.0.tar.gz")
+install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
   script_folder = "src/13-Poland-provinces/",
   data_folder = "data/",
   packages = c("sf", "giscoR", "here", "tidyverse")
 )
-dataset_provinces <- POMUtils::fetch_zip_with_shp(
+dataset_provinces <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/gminy.zip"
 )
-dataset_powiaty <- POMUtils::fetch_zip_with_shp(
+dataset_powiaty <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/powiaty.zip"
 )
-dataset_regions <- POMUtils::fetch_zip_with_shp(
+dataset_regions <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
 )

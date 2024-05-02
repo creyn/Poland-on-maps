@@ -1,6 +1,6 @@
 print("Create map of Poland rivers")
 
-install.packages("src/packages/POMUtils_1.0.tar.gz")
+install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
   script_folder = "src/04-Poland-rivers/",
   data_folder = "data/",
@@ -8,7 +8,7 @@ folders <- POMUtils::setup(
 )
 
 print(">>>>> downloading rivers.....")
-dataset <- POMUtils::fetch_zip_with_shp(
+dataset <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "http://envirosolutions.pl/dane/rzekiPL.zip"
 )

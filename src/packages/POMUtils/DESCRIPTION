@@ -1,9 +1,9 @@
 Package: POMUtils
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
-Date: 2024-04-04
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Title: Poland on maps utils
+Version: 1.1
+Date: 2024-05-02
+Author: Creyn
+Maintainer: <dev@creyn.pl>
+Description: Common util functions for Poland on maps scripts
+License: MIT

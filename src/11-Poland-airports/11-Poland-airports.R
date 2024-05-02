@@ -1,6 +1,6 @@
 print("Create map of Poland's airports")
 
-install.packages("src/packages/POMUtils_1.0.tar.gz")
+install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
   script_folder = "src/11-Poland-airports/",
   packages = c("sf", "giscoR", "here", "tidyverse")
