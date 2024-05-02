@@ -6,6 +6,8 @@ folders <- POMUtils::setup(
   data_folder = "data/",
   packages = c("sf", "giscoR", "here", "tidyverse")
 )
+
+print(">>>>> fetching datasets.....")
 dataset_provinces <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/gminy.zip"
@@ -18,15 +20,16 @@ dataset_regions <- POMUtils::fetch_zip_with_dataset(
   env_folders = folders,
   dataset_url = "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
 )
-
-provinces <- st_read(dataset_provinces$final_filename_shapes)
-powiaty <- st_read(dataset_powiaty$final_filename_shapes)
-regions <- st_read(dataset_regions$final_filename_shapes)
-
 poland <- gisco_get_countries(
     country = "PL",
     resolution = "1"
 )
+
+print(">>>>> processing.....")
+provinces <- st_read(dataset_provinces$final_filename_shapes)
+powiaty <- st_read(dataset_powiaty$final_filename_shapes)
+regions <- st_read(dataset_regions$final_filename_shapes)
+
 poland <- st_transform(poland, st_crs(regions))
 
 # map code to type
@@ -63,3 +66,10 @@ ggplot() +
 ggsave(paste(folders$final_map_folder, "13-Poland-provinces.png", sep = "/"))
 
 print(">>>>> Done.")
+
+# to run using Docker
+# docker pull creyn/poland-on-maps:latest
+# OR
+# docker build -t poland-on-maps .
+# docker run -it -v ${PWD}:/home/docker -w /home/docker -e POM_DATA_FOLDER=/home/docker/data -e POM_OUTPUT_MAPS_FOLDER=/home/docker/output poland-on-maps bash
+# Rscript src/13-Poland-provinces/13-Poland-provinces.R
