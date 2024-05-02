@@ -1,95 +1,29 @@
 print("Create map of Poland election results")
 
-# configure script
-script_folder <- "src/06-Poland-elections-result/"
-
-# common
-print(">>>>> Setup env...")
-packages <- c("sf", "here", "tidyverse", "giscoR")
-installed_packages <- packages %in% rownames(
-  installed.packages()
+# run from 'Poland-on-maps' folder: Poland-on-maps> Rscript.exe .\src\06-Poland-elections-result\06-Poland-elections-result.R
+install.packages("src/packages/POMUtils_1.1.tar.gz")
+folders <- POMUtils::setup(
+  script_folder = "src/06-Poland-elections-result/",
+  data_folder = "data/",
+  packages = c("sf", "here", "tidyverse", "giscoR", "janitor")
 )
-if (any(installed_packages == F)) {
-  install.packages(
-      packages[!installed_packages], repos='http://cran.us.r-project.org'
-    )
-}
-invisible(lapply(
-  packages, library,
-    character.only = T
-))
-setwd(here::here())
-
-print(">>>>> Setup folders...")
-data_folder <- paste(script_folder, "script-big-data", sep = "/")
-env_data_folder <- Sys.getenv("POM_DATA_FOLDER")
-if(env_data_folder != "") {
-	data_folder <- env_data_folder
-}
-dir.create(data_folder)
-print(paste(">>>>> Data folder setup to: ", data_folder))
-
-output_maps_folder <- script_folder
-env_maps_folder <- Sys.getenv("POM_OUTPUT_MAPS_FOLDER")
-if(env_maps_folder != "") {
-	output_maps_folder <- env_maps_folder
-}
-dir.create(output_maps_folder)
-print(paste(">>>>> Output maps folder setup to: ", output_maps_folder))
-
-# mapping
 
 print(">>>>> downloading provinces.....")
-dataset_url_shapes_voivodeships <- "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
-dataset_path_shapes_voivodeships <- paste(data_folder, basename(dataset_url_shapes_voivodeships), sep = "/")
-dataset_folder_shapes_voivodeships <- sub(".zip", "", dataset_path_shapes_voivodeships)
-
-if (! file.exists(dataset_path_shapes_voivodeships)) {
-	download.file(
-		url = dataset_url_shapes_voivodeships,
-		destfile = dataset_path_shapes_voivodeships,
-		mode = "wb"
-	)
-
-	unzip(
-		dataset_path_shapes_voivodeships,
-		exdir = dataset_folder_shapes_voivodeships
-	)
-}
-
-filename_shapes_voivodeship <- list.files(
-    path = dataset_folder_shapes_voivodeships,
-    pattern = ".shp",
-    full.names = T
+dataset_voivodeships <- POMUtils::fetch_zip_with_dataset(
+  env_folders = folders,
+  dataset_url = "https://www.gis-support.pl/downloads/2022/wojewodztwa.zip"
 )
+voivodeships <- st_read(dataset_voivodeships, options = "ENCODING=UTF8")
 
 print(">>>>> downloading election results per voivodeship.....")
-dataset_url_results_voivodeships <- "https://prezydent20200628.pkw.gov.pl/prezydent20200628/data/2/csv/wyniki_gl_na_kand_po_wojewodztwach_csv.zip"
-dataset_path_results_voivodeships <- paste(data_folder, basename(dataset_url_results_voivodeships), sep = "/")
-dataset_folder_results_voivodeships <- sub(".zip", "", dataset_path_results_voivodeships)
-
-if (! file.exists(dataset_path_results_voivodeships)) {
-	download.file(
-		url = dataset_url_results_voivodeships,
-		destfile = dataset_path_results_voivodeships,
-		mode = "wb"
-	)
-
-	unzip(
-		dataset_path_results_voivodeships,
-		exdir = dataset_folder_results_voivodeships
-	)
-}
-
-print(">>>>> processing results.....")
-filename_results_voivodeship <- list.files(
-    path = dataset_folder_results_voivodeships,
-    pattern = ".csv",
-    full.names = T
+dataset_voivodeships_results <- POMUtils::fetch_zip_with_dataset(
+  env_folders = folders,
+  dataset_url = "https://prezydent20200628.pkw.gov.pl/prezydent20200628/data/2/csv/wyniki_gl_na_kand_po_wojewodztwach_csv.zip",
+  dataset_extension = ".csv"
 )
+results_csv <- read_csv2(dataset_voivodeships_results$final_filename_shapes)
 
-results_csv <- read_csv2(filename_results_voivodeship)
-
+print(">>>>> processing data .....")
 results <- results_csv |> janitor::clean_names() |>
 	mutate(
 		wojewodztwo = factor(wojewodztwo),
@@ -131,12 +65,12 @@ ggplot(
 	) +
 	labs(caption = "Poland's presidential elections 2020 results")
 
+ggsave(paste(folders$final_map_folder, "06-Poland-elections-results.png", sep = "/"))
+
 results_voivodeships_with_winner <- results_csv |> janitor::clean_names() |>
 	mutate(
 		winner = ifelse(andrzej_sebastian_duda > rafal_kazimierz_trzaskowski, "Andrzej Sebastian Duda", "Rafal Kazimierz Trzaskowski")
 	)
-
-voivodeships <- st_read(filename_shapes_voivodeship, options = "ENCODING=UTF8")
 
 voivodeships_with_teryt <- voivodeships |>
 	mutate(
@@ -161,7 +95,7 @@ ggplot() +
 	) +
 	labs(caption = "Poland's 2020 presidential elections results per voivodeship")
 
-ggsave(paste(output_maps_folder, "06-Poland-elections-result-per-voivodeship.png", sep = "/"))
+ggsave(paste(folders$final_map_folder, "06-Poland-elections-result-per-voivodeship.png", sep = "/"))
 
 print(">>>>> Done.")
 
