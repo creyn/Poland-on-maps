@@ -39,10 +39,10 @@ List of map views that I want to create:
 - [x] Poland regions ([2024-03-04](docs/journal/2024-03-04.md))
 - [x] Poland elections per voivodeship ([2024-03-23](docs/journal/2024-03-23.md))
 - [x] Poland elections per province ([2024-03-24](docs/journal/2024-03-24.md))
-- [ ] Poland roads
-- [ ] Poland railroads
+- [x] Poland roads ([2024-04-06](docs/journal/2024-04-06.md))
+- [x] Poland railroads ([2024-05-16](docs/journal/2024-05-16.md))
 - [ ] Poland lighthouses
-- [ ] Poland metro lines
+- [x] Poland metro lines (subway) ([2024-05-16](docs/journal/2024-05-16.md))
 - [x] Poland + Vistula + Warsaw ([2024-03-17](docs/journal/2024-03-17.md))
 - [x] Vistula + Warsaw ([2024-03-17](docs/journal/2024-03-17.md))
 - [x] Vistula + Krakow  ([2024-03-17](docs/journal/2024-03-17.md))
