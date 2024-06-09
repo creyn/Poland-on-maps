@@ -4,7 +4,7 @@ install.packages("src/packages/POMUtils_1.1.tar.gz")
 folders <- POMUtils::setup(
     script_folder = "src/17-Baltic-bike-trip-2024/",
     data_folder = "data/",
-    packages = c("sf", "here", "tidyverse", "leaflet", "ggspatial", "prettymapr")
+    packages = c("sf", "here", "tidyverse", "leaflet", "ggspatial", "prettymapr", "gpx")
 )
 
 print(">>>>> processing......")
@@ -32,10 +32,23 @@ for (kml_file in all_kml_files) {
   }
 }
 
-bbox_string <- "POLYGON((18.0348 54.8795, 20.059 54.8795, 20.059 54.0637, 18.0348 54.0637, 18.0348 54.8795))"
+# get official bike trails
+green_velo <- st_read("data/GPX/green-velo_velomapa.gpx", layer = "tracks")
+r10_hel <- st_read("data/GPX/r10-lacznik-polwysep-helski_velomapa.gpx", layer = "tracks")
+r10_r13 <- st_read("data/GPX/velo-baltica-eurovelo-10-13-r10_velomapa.gpx", layer = "tracks")
+r9 <- st_read("data/GPX/wislana-trasa-rowerowa-ev9-pomorskie_velomapa.gpx", layer = "tracks")
+mierzeja <- st_read("data/GPX/trasa-rowerowa-mierzei-wislanej-r10_velomapa.gpx", layer = "tracks")
+
+# bbox_string <- "POLYGON((18.0348 54.8795, 20.059 54.8795, 20.059 54.0637, 18.0348 54.0637, 18.0348 54.8795))"
+bbox_string <- "POLYGON((18.2891 54.8562, 19.6124 54.8562, 19.6124 54.1223, 18.2891 54.1223, 18.2891 54.8562))"
 bbox <- st_sf(st_as_sfc(bbox_string, crs = 4326))
 
 tracks_bbox <- st_crop(tracks, bbox)
+green_velo_bbox <- st_crop(green_velo, bbox)
+r10_hel_bbox <- st_crop(r10_hel, bbox)
+r10_r13_bbox <- st_crop(r10_r13, bbox)
+r9_bbox <- st_crop(r9, bbox)
+mierzeja_bbox <- st_crop(mierzeja, bbox)
 
 line_sopot_string <- "LINESTRING (18.5763252 54.4481236, 18.5760248 54.4489468, 18.5761321 54.4496827, 18.5767543 54.4505931, 18.7982340 54.5968582, 18.8000751 54.5987633, 18.8000321 54.5996704, 18.7996566 54.5998692)"
 line_sopot <- st_sf(st_as_sfc(line_sopot_string, crs = 4326))
@@ -58,12 +71,18 @@ info <- data.frame(
 ggplot() +
     annotation_map_tile("osm", zoom = 11, forcedownload = FALSE) +
     geom_sf(data = tracks_bbox, color = "red", linewidth = 1) +
+    geom_sf(data = green_velo_bbox, color = "black", linewidth = 0.2) +
+    geom_sf(data = r10_hel_bbox, color = "black", linewidth = 0.2) +
+    geom_sf(data = r10_r13_bbox, color = "black", linewidth = 0.2) +
+    geom_sf(data = r9_bbox, color = "black", linewidth = 0.2) +
+    geom_sf(data = mierzeja_bbox, color = "black", linewidth = 0.2) +
     geom_sf(data = line_sopot, color = "blue", linewidth = 0.5, linetype = "dashed") +
     geom_sf(data = line_krynica, color = "blue", linewidth = 0.5, linetype = "dashed") +
     geom_sf_text(data = cities, aes(label = name), size = 3) +
     geom_sf_text(data = info, aes(label = name), size = 5) +
     theme_void() +
-    labs(title = "Trasa rowerowa Bałtyk 2024", caption = "Sopot - Hel - Puck - Sobieszewo - Krynica Morska - Tolkmicko - Elbląd - Gdańsk")
+    theme(plot.caption = element_text(hjust = 0, vjust = 10)) +
+    labs(caption = "Sopot - Hel - Puck - Sobieszewo - Krynica Morska - Tolkmicko - Elbląd - Gdańsk")
 
 ggsave(paste(folders$final_map_folder, "17-Baltic-bike-trip-2024.png", sep = "/"))
 
