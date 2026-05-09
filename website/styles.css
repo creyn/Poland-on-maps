@@ -1,0 +1,183 @@
+/* ============================ */
+/* styles.css (ZAPISZ OSOBNO)  */
+/* ============================ */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0d;
+    color: #f5f5f5;
+}
+
+/* Nawigacja */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+nav h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a, #000000);
+}
+
+.hero-content {
+    text-align: center;
+    margin-top: 15%;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: auto;
+    opacity: 0.8;
+}
+
+/* Przycisk */
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 14px 30px;
+    background: #c9a96e;
+    color: black;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(201,169,110,0.3);
+}
+
+/* Galeria */
+.gallery {
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.gallery h2 {
+    margin-bottom: 40px;
+    font-family: 'Playfair Display', serif;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.card img {
+    width: 100%;
+    display: block;
+}
+
+.card p {
+    padding: 15px;
+    font-size: 0.95rem;
+}
+
+/* Sekcje */
+.about, .contact {
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.about h2, .contact h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+}
+
+/* Formularz */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+input, textarea {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: #1a1a1a;
+    color: white;
+}
+
+input:focus, textarea:focus {
+    outline: 1px solid #c9a96e;
+}
+
+button {
+    padding: 14px;
+    border: none;
+    background: #c9a96e;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* Stopka */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #000;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
