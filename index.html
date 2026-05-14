@@ -87,14 +87,9 @@ section{padding:6rem 2rem}
 .style-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--parchment)}
 .style-divider{flex:1;height:1px;background:var(--line);opacity:.5}
 .cities-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
-.city-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:2/3;background:#141210}
-.city-card::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(14,13,11,.45) 0%,rgba(14,13,11,.1) 55%,rgba(14,13,11,0) 100%);transition:opacity .5s;pointer-events:none}
-.city-card.pastel-card::before{background:linear-gradient(to top,rgba(14,13,11,.52) 0%,rgba(14,13,11,.2) 50%,rgba(14,13,11,.02) 100%)}
-.city-card:hover::before{opacity:.25}
+.city-card{position:relative;overflow:hidden;cursor:zoom-in;aspect-ratio:2/3;background:#141210}
 .city-photo{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;display:block}
-.city-card:hover .city-photo{transform:scale(1.05)}
 .city-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1rem;text-align:center;transition:transform .7s ease}
-.city-card:hover .city-placeholder{transform:scale(1.03)}
 .city-placeholder .ph-label{font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;border:1px dashed;padding:.4rem .8rem}
 /* tint per style */
 .city-card.gold-card .city-placeholder{background:#0f0c07;color:rgba(201,168,76,.3)}
@@ -103,13 +98,6 @@ section{padding:6rem 2rem}
 .city-card.pastel-card .city-placeholder .ph-label{border-color:rgba(196,168,176,.2);color:rgba(196,168,176,.35)}
 .city-card.cyber-card .city-placeholder{background:#070a10;color:rgba(74,180,232,.3)}
 .city-card.cyber-card .city-placeholder .ph-label{border-color:rgba(74,180,232,.2);color:rgba(74,180,232,.35)}
-.city-info{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:1.4rem 1.2rem}
-.city-name{font-family:'Cormorant Garamond',serif;font-size:1.42rem;font-weight:300;color:var(--parchment);line-height:1}
-.city-sub{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;margin-top:.3rem;opacity:.85;transform:none;transition:opacity .35s .05s,transform .35s .05s}
-.city-card:hover .city-sub{opacity:1;transform:translateY(0)}
-.city-card.gold-card .city-sub{color:#c9a84c}
-.city-card.pastel-card .city-sub{color:#c4a8b0}
-.city-card.cyber-card .city-sub{color:#4ab4e8}
 .cities-cta{margin-top:1.5rem;font-size:.79rem;color:var(--warm-gray);letter-spacing:.08em;opacity:.6}
 
 /* IDEAS */
@@ -197,6 +185,29 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
 .lb-close:hover{color:var(--gold-light)}
 .lb-caption{position:fixed;bottom:1.6rem;left:50%;transform:translateX(-50%);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--warm-gray);opacity:.7}
 
+
+/* CENNIK RESPONSIVE */
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.price-box{background:#0f0e0c;border:1px solid rgba(184,146,42,.09);padding:2rem 2.2rem;position:relative;overflow:hidden}
+.price-box-top{position:absolute;top:0;left:0;right:0;height:2px}
+.price-label{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.price-row{display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(184,146,42,.1)}
+.price-row:last-child{border-bottom:none}
+.price-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300}
+.price-note{display:block;font-size:.58rem;letter-spacing:.12em;color:#4ab4e8;margin-top:.2rem;opacity:.8}
+.price-val{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300;white-space:nowrap;padding-left:1rem}
+.gratis-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.gratis-box{margin-top:3px;background:#0f0e0c;border:1px solid rgba(184,146,42,.15);padding:2rem 2.2rem;position:relative;overflow:hidden}
+.gratis-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(184,146,42,.08);padding-bottom:.7rem;margin-bottom:.7rem}
+.gratis-row:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+.gratis-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--parchment);font-weight:300}
+.gratis-val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);font-weight:300;letter-spacing:.05em;white-space:nowrap;padding-left:1rem}
+.gratis-desc{font-size:.82rem;line-height:1.85;color:var(--warm-gray);border-left:1px solid rgba(184,146,42,.15);padding-left:2rem}
+@media(max-width:600px){
+  .price-grid{grid-template-columns:1fr}
+  .gratis-grid{grid-template-columns:1fr}
+  .gratis-desc{border-left:none;padding-left:0;border-top:1px solid rgba(184,146,42,.15);padding-top:1.4rem;margin-top:.5rem}
+}
 </style>
 </head>
 <body>
@@ -281,34 +292,19 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
       </div>
       <div class="cities-grid">
         <div class="city-card gold-card">
-          <img src="img/gold-warszawa.jpg" alt="Warszawa styl złoty" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/gold-warszawa.png" alt="Warszawa styl złoty" class="city-photo">
         </div>
         <div class="city-card gold-card">
-          <img src="img/gold-krakow.jpg" alt="Kraków styl złoty" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/gold-krakow.png" alt="Kraków styl złoty" class="city-photo">
         </div>
         <div class="city-card gold-card">
-          <img src="img/gold-poznan.jpg" alt="Poznań styl złoty" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/gold-poznan.png" alt="Poznań styl złoty" class="city-photo">
         </div>
         <div class="city-card gold-card">
-          <img src="img/gold-gdansk.jpg" alt="Gdańsk styl złoty" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/gold-gdansk.png" alt="Gdańsk styl złoty" class="city-photo">
         </div>
         <div class="city-card gold-card">
-          <img src="img/gold-lublin.jpg" alt="Lublin styl złoty" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/gold-lublin.png" alt="Lublin styl złoty" class="city-photo">
         </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:var(--gold-light);text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
@@ -323,34 +319,19 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
       </div>
       <div class="cities-grid">
         <div class="city-card pastel-card">
-          <img src="img/pastel-warszawa.jpg" alt="Warszawa styl pastelowy" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/pastel-warszawa.png" alt="Warszawa styl pastelowy" class="city-photo">
         </div>
         <div class="city-card pastel-card">
-          <img src="img/pastel-krakow.jpg" alt="Kraków styl pastelowy" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/pastel-krakow.png" alt="Kraków styl pastelowy" class="city-photo">
         </div>
         <div class="city-card pastel-card">
-          <img src="img/pastel-poznan.jpg" alt="Poznań styl pastelowy" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/pastel-poznan.png" alt="Poznań styl pastelowy" class="city-photo">
         </div>
         <div class="city-card pastel-card">
-          <img src="img/pastel-gdansk.jpg" alt="Gdańsk styl pastelowy" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/pastel-gdansk.png" alt="Gdańsk styl pastelowy" class="city-photo">
         </div>
         <div class="city-card pastel-card">
-          <img src="img/pastel-lublin.jpg" alt="Lublin styl pastelowy" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/pastel-lublin.png" alt="Lublin styl pastelowy" class="city-photo">
         </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:#c4a8b0;text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
@@ -365,34 +346,19 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
       </div>
       <div class="cities-grid">
         <div class="city-card cyber-card">
-          <img src="img/cyberpunk-warszawa.jpg" alt="Warszawa styl cyberpunk" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/cyberpunk-warszawa.png" alt="Warszawa styl cyberpunk" class="city-photo">
         </div>
         <div class="city-card cyber-card">
-          <img src="img/cyberpunk-krakow.jpg" alt="Kraków styl cyberpunk" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/cyberpunk-krakow.png" alt="Kraków styl cyberpunk" class="city-photo">
         </div>
         <div class="city-card cyber-card">
-          <img src="img/cyberpunk-poznan.jpg" alt="Poznań styl cyberpunk" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/cyberpunk-poznan.png" alt="Poznań styl cyberpunk" class="city-photo">
         </div>
         <div class="city-card cyber-card">
-          <img src="img/cyberpunk-gdansk.jpg" alt="Gdańsk styl cyberpunk" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/cyberpunk-gdansk.png" alt="Gdańsk styl cyberpunk" class="city-photo">
         </div>
         <div class="city-card cyber-card">
-          <img src="img/cyberpunk-lublin.jpg" alt="Lublin styl cyberpunk" class="city-photo">
-          <div class="city-info">
-            <p class="city-sub"><a href="#cennik" style="color:inherit;text-decoration:none">Kup plakat →</a></p>
-          </div>
+          <img src="img/cyberpunk-lublin.png" alt="Lublin styl cyberpunk" class="city-photo">
         </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:#4ab4e8;text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
@@ -535,74 +501,68 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
       Każda mapa drukowana jest na papierze premium i wysyłana kurierem — gotowa do powieszenia lub do samodzielnego oprawienia. Projekt graficzny, w tym tworzenie nowych stylów i indywidualnych interpretacji, jest wliczony w cenę i nie jest osobno doliczany.
     </p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px" class="reveal reveal-delay-1">
+    <div class="price-grid reveal reveal-delay-1">
 
       <!-- A2 -->
-      <div style="background:#0f0e0c;border:1px solid rgba(184,146,42,.09);padding:2rem 2.2rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(184,146,42,.4),transparent)"></div>
-        <p style="font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:.8">Format A2 · 42×60 cm</p>
-        <div style="display:flex;flex-direction:column;gap:.5px">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(184,146,42,.1)">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">W ramce drewnianej</span>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">200 zł</span>
+      <div class="price-box">
+        <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.4),transparent)"></div>
+        <p class="price-label" style="opacity:.8">Format A2 · 42×60 cm</p>
+        <div class="price-row">
+          <span class="price-name">W ramce drewnianej</span>
+          <span class="price-val">200 zł</span>
+        </div>
+        <div class="price-row">
+          <div>
+            <span class="price-name">W antyramie</span>
+            <span class="price-note">✦ Polecane do stylu Cyberpunk</span>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(184,146,42,.1)">
-            <div>
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">W antyramie</span>
-              <span style="display:block;font-size:.58rem;letter-spacing:.12em;color:#4ab4e8;margin-top:.2rem;opacity:.8">✦ Polecane do stylu Cyberpunk</span>
-            </div>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">150 zł</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">Bez ramki</span>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">100 zł</span>
-          </div>
+          <span class="price-val">150 zł</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Bez ramki</span>
+          <span class="price-val">100 zł</span>
         </div>
       </div>
 
       <!-- A3 -->
-      <div style="background:#0f0e0c;border:1px solid rgba(184,146,42,.09);padding:2rem 2.2rem;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(184,146,42,.25),transparent)"></div>
-        <p style="font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:.65">Format A3 · 30×42 cm</p>
-        <div style="display:flex;flex-direction:column;gap:.5px">
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(184,146,42,.1)">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">W ramce drewnianej</span>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">100 zł</span>
+      <div class="price-box">
+        <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.25),transparent)"></div>
+        <p class="price-label" style="opacity:.65">Format A3 · 30×42 cm</p>
+        <div class="price-row">
+          <span class="price-name">W ramce drewnianej</span>
+          <span class="price-val">100 zł</span>
+        </div>
+        <div class="price-row">
+          <div>
+            <span class="price-name">W antyramie</span>
+            <span class="price-note">✦ Polecane do stylu Cyberpunk</span>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px solid rgba(184,146,42,.1)">
-            <div>
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">W antyramie</span>
-              <span style="display:block;font-size:.58rem;letter-spacing:.12em;color:#4ab4e8;margin-top:.2rem;opacity:.8">✦ Polecane do stylu Cyberpunk</span>
-            </div>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">75 zł</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-weight:300">Bez ramki</span>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light);font-weight:300">50 zł</span>
-          </div>
+          <span class="price-val">75 zł</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">Bez ramki</span>
+          <span class="price-val">50 zł</span>
         </div>
       </div>
 
     </div>
 
     <!-- Gratis box -->
-    <div style="margin-top:3px;background:#0f0e0c;border:1px solid rgba(184,146,42,.15);padding:2rem 2.2rem;position:relative;overflow:hidden" class="reveal reveal-delay-2">
-      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(184,146,42,.6),transparent)"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center">
+    <div class="gratis-box reveal reveal-delay-2">
+      <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.6),transparent)"></div>
+      <div class="gratis-grid">
         <div>
-          <p style="font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;opacity:.8">Wliczone w cenę · Gratis</p>
-          <div style="display:flex;flex-direction:column;gap:.7rem">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(184,146,42,.08);padding-bottom:.7rem">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--parchment);font-weight:300">Nowy indywidualny styl kolorystyczny</span>
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);font-weight:300;letter-spacing:.05em">gratis</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:baseline">
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--parchment);font-weight:300">Nowa interpretacja mapy / własny pomysł</span>
-              <span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);font-weight:300;letter-spacing:.05em">gratis</span>
-            </div>
+          <p class="price-label" style="opacity:.8;margin-bottom:.9rem">Wliczone w cenę · Gratis</p>
+          <div class="gratis-row">
+            <span class="gratis-name">Nowy indywidualny styl kolorystyczny</span>
+            <span class="gratis-val">gratis</span>
+          </div>
+          <div class="gratis-row">
+            <span class="gratis-name">Nowa interpretacja mapy / własny pomysł</span>
+            <span class="gratis-val">gratis</span>
           </div>
         </div>
-        <p style="font-size:.82rem;line-height:1.85;color:var(--warm-gray);border-left:1px solid rgba(184,146,42,.15);padding-left:2rem">
+        <p class="gratis-desc">
           Masz pomysł na własny styl, nieoczywiste zestawienie kolorów albo zupełnie inną interpretację mapy? Chętnie to zrealizujemy — projekt graficzny wliczony jest w cenę wydruku. Napisz do nas, a razem wymyślimy coś wyjątkowego.
         </p>
       </div>
