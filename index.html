@@ -95,7 +95,7 @@ section{padding:6rem 2rem}
 .style-badge.cyber{color:#4ab4e8;border-color:rgba(74,180,232,.35);background:rgba(74,180,232,.07)}
 .style-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--parchment)}
 .style-divider{flex:1;height:1px;background:var(--line);opacity:.5}
-.cities-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.cities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
 .city-card{position:relative;overflow:hidden;cursor:zoom-in;aspect-ratio:2/3;background:#141210}
 .city-photo{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;display:block}
 .city-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;padding:1rem;text-align:center;transition:transform .7s ease}
@@ -107,6 +107,10 @@ section{padding:6rem 2rem}
 .city-card.pastel-card .city-placeholder .ph-label{border-color:rgba(196,168,176,.2);color:rgba(196,168,176,.35)}
 .city-card.cyber-card .city-placeholder{background:#070a10;color:rgba(74,180,232,.3)}
 .city-card.cyber-card .city-placeholder .ph-label{border-color:rgba(74,180,232,.2);color:rgba(74,180,232,.35)}
+.style-badge.blueprint{color:#7ec8f0;border-color:rgba(126,200,240,.4);background:rgba(126,200,240,.07)}
+.city-card.blueprint-card{background:#03070e}
+.city-card.blueprint-card .city-placeholder{background:#03070e;color:rgba(126,200,240,.3)}
+.city-card.blueprint-card .city-placeholder .ph-label{border-color:rgba(126,200,240,.2);color:rgba(126,200,240,.35)}
 .cities-cta{margin-top:1.5rem;font-size:.79rem;color:var(--warm-gray);letter-spacing:.08em;opacity:.6}
 
 /* IDEAS */
@@ -170,7 +174,7 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
 .toast{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#1a1810;border:1px solid var(--gold);color:var(--gold-light);padding:1rem 1.8rem;font-size:.81rem;letter-spacing:.1em;opacity:0;transform:translateY(10px);transition:all .4s;pointer-events:none}
 .toast.show{opacity:1;transform:none}
 
-@media(max-width:1100px){.cities-grid{grid-template-columns:repeat(3,1fr)}.ideas-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1100px){.cities-grid{grid-template-columns:repeat(2,1fr)}.ideas-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}.nav-links{display:none}
   .how-grid{grid-template-columns:1fr}
@@ -265,7 +269,7 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
       <div class="how-card reveal reveal-delay-1">
         <div class="how-num">02</div>
         <p class="how-title">Swoje miasto w gotowym stylu</p>
-        <p class="how-desc">Podoba Ci się styl złoty, pastelowy albo cyberpunk — ale chcesz innego miasta? Żaden problem. Wykonamy Twoje miasto w dowolnym z dostępnych stylów, w wybranym formacie.</p>
+        <p class="how-desc">Podoba Ci się styl złoty, pastelowy, cyberpunk albo blueprint — ale chcesz innego miasta? Żaden problem. Wykonamy Twoje miasto w dowolnym z dostępnych stylów, w wybranym formacie.</p>
       </div>
       <div class="how-card reveal reveal-delay-2">
         <div class="how-num">03</div>
@@ -312,9 +316,6 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <div class="city-card gold-card">
           <img src="img/gold-gdansk.jpg" alt="Gdańsk styl złoty" class="city-photo">
         </div>
-        <div class="city-card gold-card">
-          <img src="img/gold-lublin.jpg" alt="Lublin styl złoty" class="city-photo">
-        </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:var(--gold-light);text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
     </div>
@@ -338,9 +339,6 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         </div>
         <div class="city-card pastel-card">
           <img src="img/pastel-gdansk.jpg" alt="Gdańsk styl pastelowy" class="city-photo">
-        </div>
-        <div class="city-card pastel-card">
-          <img src="img/pastel-lublin.jpg" alt="Lublin styl pastelowy" class="city-photo">
         </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:#c4a8b0;text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
@@ -366,11 +364,32 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <div class="city-card cyber-card">
           <img src="img/cyberpunk-gdansk.jpg" alt="Gdańsk styl cyberpunk" class="city-photo">
         </div>
-        <div class="city-card cyber-card">
-          <img src="img/cyberpunk-lublin.jpg" alt="Lublin styl cyberpunk" class="city-photo">
-        </div>
       </div>
       <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:#4ab4e8;text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
+    </div>
+
+    <!-- STYL: BLUEPRINT -->
+    <div class="style-block reveal" style="margin-top:4rem">
+      <div class="style-header">
+        <span class="style-badge blueprint">Styl blueprint</span>
+        <span class="style-title">Ciemne tło · Linie techniczne · Niebiesko-białe detale</span>
+        <span class="style-divider"></span>
+      </div>
+      <div class="cities-grid">
+        <div class="city-card blueprint-card">
+          <img src="img/blueprint-warszawa.jpg" alt="Warszawa styl blueprint" class="city-photo">
+        </div>
+        <div class="city-card blueprint-card">
+          <img src="img/blueprint-krakow.jpg" alt="Kraków styl blueprint" class="city-photo">
+        </div>
+        <div class="city-card blueprint-card">
+          <img src="img/blueprint-poznan.jpg" alt="Poznań styl blueprint" class="city-photo">
+        </div>
+        <div class="city-card blueprint-card">
+          <img src="img/blueprint-gdansk.jpg" alt="Gdańsk styl blueprint" class="city-photo">
+        </div>
+      </div>
+      <p class="cities-cta reveal">Chcesz inne miasto w tym stylu? <a href="#zamow" style="color:#7ec8f0;text-decoration:none;letter-spacing:.08em">Napisz →</a></p>
     </div>
 
   </div>
