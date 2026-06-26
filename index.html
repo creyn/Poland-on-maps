@@ -158,6 +158,9 @@ section{padding:6rem 2rem}
 .form-submit .arrow{transition:transform .3s}
 .form-submit:hover .arrow{transform:translateX(4px)}
 .form-note{font-size:.72rem;color:var(--warm-gray);opacity:.55;letter-spacing:.05em;line-height:1.7}
+.form-group input.invalid,.form-group select.invalid,.form-group textarea.invalid{border-bottom-color:#d8785a}
+.form-error{display:none;font-size:.76rem;color:#e08a78;letter-spacing:.04em;line-height:1.6;margin-top:.2rem}
+.form-error.show{display:block}
 
 footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-logo-wrap{display:flex;align-items:center;gap:.75rem}
@@ -247,10 +250,10 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
 <section class="hero">
   <p class="hero-eyebrow reveal">Map Atelier · Pracownia dekoracyjna</p>
   <h1 class="reveal reveal-delay-1">Polska<br>na <em>mapach</em></h1>
-  <p class="hero-sub reveal reveal-delay-2">Gotowe plakaty do kupienia · Własne miasto na zamówienie · Edycje limitowane</p>
+  <p class="hero-sub reveal reveal-delay-2">Gotowe plakaty do kupienia · Twoje miasto w naszym stylu · Edycje limitowane</p>
   <div class="hero-ctas reveal reveal-delay-3">
     <a href="#miasta" class="hero-cta">Zobacz mapy <span class="arrow">→</span></a>
-    <a href="#zamow" class="hero-cta secondary">Zamów własną <span class="arrow">→</span></a>
+    <a href="#zamow" class="hero-cta secondary">Zamów mapę <span class="arrow">→</span></a>
   </div>
   <div class="scroll-hint"><span>Przewiń</span><span class="scroll-line"></span></div>
 </section>
@@ -259,7 +262,7 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
 <section id="jak-to-dziala">
   <div class="container">
     <p class="section-label reveal">Jak to działa</p>
-    <h2 class="section-title reveal reveal-delay-1">Trzy sposoby<br>na <em>własną mapę</em></h2>
+    <h2 class="section-title reveal reveal-delay-1">Dwa sposoby<br>na <em>swoją mapę</em></h2>
     <div class="how-grid">
       <div class="how-card reveal">
         <div class="how-num">01</div>
@@ -270,11 +273,6 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <div class="how-num">02</div>
         <p class="how-title">Swoje miasto w gotowym stylu</p>
         <p class="how-desc">Podoba Ci się styl złoty, pastelowy, cyberpunk albo blueprint — ale chcesz innego miasta? Żaden problem. Wykonamy Twoje miasto w dowolnym z dostępnych stylów, w wybranym formacie.</p>
-      </div>
-      <div class="how-card reveal reveal-delay-2">
-        <div class="how-num">03</div>
-        <p class="how-title">Projekt od zera</p>
-        <p class="how-desc">Masz inny pomysł na kolorystykę, układ, przeznaczenie? Opowiedz nam o tym — razem ustalimy co chcesz osiągnąć i stworzymy mapę skrojoną dokładnie pod Ciebie.</p>
       </div>
     </div>
     <div class="how-cta-row reveal reveal-delay-1">
@@ -404,52 +402,52 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
     <div class="ideas-intro">
       <div>
         <p class="section-label reveal">Inspiracje</p>
-        <h2 class="section-title reveal reveal-delay-1">Katalog<em> pomysłów</em></h2>
+        <h2 class="section-title reveal reveal-delay-1">Gdzie sprawdza się<br><em>Twoja mapa</em></h2>
       </div>
       <p class="section-desc reveal reveal-delay-1">
-        Mapa to nie tylko dekoracja — to opowieść o miejscu, które coś dla Ciebie znaczy. Oto kilka pomysłów, które można zrealizować razem.
+        To zawsze ta sama, gotowa mapa miasta w wybranym stylu — zmienia się tylko powód, dla którego ląduje na Twojej ścianie.
       </p>
     </div>
     <div class="ideas-grid">
       <div class="idea-card reveal">
-        <span class="idea-icon">💍</span>
-        <p class="idea-title">Prezent na ślub</p>
-        <p class="idea-desc">Mapa miejsc, które napisały Waszą historię — gdzie się poznaliście, gdzie padło pytanie, gdzie zamieszkaliście. Wyjątkowy i niepowtarzalny prezent.</p>
+        <span class="idea-icon">🎥</span>
+        <p class="idea-title">Tło na calle i nagrania</p>
+        <p class="idea-desc">Statement piece za plecami zamiast pustej ściany. Twoje miasto buduje pierwsze wrażenie na każdej wideorozmowie.</p>
       </div>
       <div class="idea-card reveal reveal-delay-1">
-        <span class="idea-icon">⚽</span>
-        <p class="idea-title">Mapa kibica</p>
-        <p class="idea-desc">Twoje miasto ze stadionami, trasami kibiców i ikonicznymi punktami piłkarskiej historii. Idealny prezent dla fana klubu.</p>
+        <span class="idea-icon">🏙️</span>
+        <p class="idea-title">Twoje miasto</p>
+        <p class="idea-desc">Miejsce, w którym mieszkasz i pracujesz, na ścianie — w stylu, który pasuje do Ciebie i do wnętrza.</p>
       </div>
       <div class="idea-card reveal reveal-delay-2">
-        <span class="idea-icon">☕</span>
-        <p class="idea-title">Mapa kawiarni</p>
-        <p class="idea-desc">Sieć ulubionych lokali zaznaczona na mapie miasta. Dla właściciela kawiarni, barista z pasją albo zagorzałego kawosza.</p>
+        <span class="idea-icon">🏢</span>
+        <p class="idea-title">Biuro i gabinet</p>
+        <p class="idea-desc">Elegancka mapa jako element marki w przestrzeni — w recepcji, sali spotkań albo za Twoim biurkiem.</p>
       </div>
       <div class="idea-card reveal reveal-delay-3">
-        <span class="idea-icon">🏨</span>
-        <p class="idea-title">Mapa hoteli / lokali</p>
-        <p class="idea-desc">Wszystkie lokalizacje Twojej sieci na jednej eleganckiej mapie. Oryginalny gadżet firmowy albo dekoracja recepcji.</p>
+        <span class="idea-icon">🎁</span>
+        <p class="idea-title">Prezent dla swojego</p>
+        <p class="idea-desc">Wspólnik, klient albo znajomy z branży — mapa jego miasta to prezent z gustem, który zapada w pamięć.</p>
       </div>
       <div class="idea-card reveal">
-        <span class="idea-icon">🏃</span>
-        <p class="idea-title">Trasa biegacza</p>
-        <p class="idea-desc">Ulubiona trasa, maraton, bieg z historią — uwieczniona jako plakat. Pamiątka lepiej niż medal.</p>
+        <span class="idea-icon">❤️</span>
+        <p class="idea-title">Miasto, które coś znaczy</p>
+        <p class="idea-desc">Tam, gdzie się zaczęło — miasto studiów, pierwszej pracy albo wspólnej historii. Na ścianę zamiast do szuflady.</p>
       </div>
       <div class="idea-card reveal reveal-delay-1">
-        <span class="idea-icon">🏠</span>
-        <p class="idea-title">Dom i okolice</p>
-        <p class="idea-desc">Twoja dzielnica, ulica, budynek — wspomnienie miejsca, do którego zawsze wraca się myślami. Idealne na przeprowadzkę lub chrzciny.</p>
+        <span class="idea-icon">🖼️</span>
+        <p class="idea-title">Kolekcja stylów</p>
+        <p class="idea-desc">To samo miasto w złotym, pastelu, cyberpunku albo blueprincie. Zacznij od jednego, dobierz kolejne w swoim tempie.</p>
       </div>
       <div class="idea-card reveal reveal-delay-2">
-        <span class="idea-icon">🌍</span>
-        <p class="idea-title">Mapa podróży</p>
-        <p class="idea-desc">Wszystkie odwiedzone miejsca w kraju lub na świecie. Twoja historia zapisana punktami na mapie — na ścianę zamiast albumu.</p>
+        <span class="idea-icon">✈️</span>
+        <p class="idea-title">Miejsce z podróży</p>
+        <p class="idea-desc">Miasto, które zostało w głowie po wyjeździe — Lizbona, Funchal, gdziekolwiek. Pamiątka lepsza niż magnes na lodówkę.</p>
       </div>
       <div class="idea-card reveal reveal-delay-3">
-        <span class="idea-icon">✨</span>
-        <p class="idea-title">Twój pomysł</p>
-        <p class="idea-desc">Masz inną wizję? Napisz — chętnie porozmawiamy. Każdy projekt zaczynamy od rozmowy o tym, co chcesz osiągnąć.</p>
+        <span class="idea-icon">🏡</span>
+        <p class="idea-title">Miasto rodzinne</p>
+        <p class="idea-desc">Skąd pochodzisz — miejsce z dzieciństwa na ścianie, w stylu, który nadaje mu nowy charakter.</p>
       </div>
     </div>
   </div>
@@ -466,14 +464,14 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <p class="section-label reveal">O pracowni</p>
         <h2 class="section-title reveal reveal-delay-1">Mapy z pasji<br><em>do designu i miast</em></h2>
         <p class="section-desc reveal reveal-delay-2">
-          Tworzymy dekoracyjne plakaty mapowe na zamówienie. Korzystamy z ogólnodostępnych danych geograficznych (m.in. OpenStreetMap), które przetwarzamy graficznie — dbając o estetykę, proporcje i unikalny charakter każdego projektu.
+          Tworzymy dekoracyjne plakaty mapowe premium. Każdą mapę generujemy z ogólnodostępnych danych geograficznych (m.in. OpenStreetMap) własnym narzędziem, a potem dopracowujemy graficznie — dbając o estetykę, proporcje i charakter każdego miasta.
         </p>
         <div class="pillars">
           <div class="pillar reveal">
             <span class="pillar-num">I</span>
             <div>
-              <p class="pillar-title">Styl to punkt wyjścia, nie ograniczenie</p>
-              <p class="pillar-text">Mamy sprawdzone style kolorystyczne, które dobrze wyglądają i są gotowe do realizacji. Ale chętnie wyjdziemy poza nie — jeśli masz inną wizję, możemy ją wspólnie opracować.</p>
+              <p class="pillar-title">Gotowe style, dopracowane w detalu</p>
+              <p class="pillar-text">Mamy cztery sprawdzone style kolorystyczne — złoty, pastelowy, cyberpunk i blueprint — gotowe do druku. Każdy dopracowany tak, żeby naprawdę dobrze wyglądał na ścianie.</p>
             </div>
           </div>
           <div class="pillar reveal reveal-delay-1">
@@ -526,7 +524,7 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
     <p class="section-label reveal">Cennik</p>
     <h2 class="section-title reveal reveal-delay-1">Przejrzyste<br><em>ceny</em></h2>
     <p class="section-desc reveal reveal-delay-2" style="margin-bottom:3.5rem">
-      Każda mapa drukowana jest na papierze premium i wysyłana kurierem — gotowa do powieszenia lub do samodzielnego oprawienia. Projekt graficzny, w tym tworzenie nowych stylów i indywidualnych interpretacji, jest wliczony w cenę i nie jest osobno doliczany.
+      Każda mapa drukowana jest na papierze premium i wysyłana kurierem — gotowa do powieszenia lub do samodzielnego oprawienia. Wybierasz miasto i styl z kolekcji — cena jest stała, bez dopłat.
     </p>
 
     <div class="price-grid reveal reveal-delay-1">
@@ -536,19 +534,15 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.4),transparent)"></div>
         <p class="price-label" style="opacity:.8">Format A2 · 42×60 cm</p>
         <div class="price-row">
-          <span class="price-name">W ramce drewnianej</span>
-          <span class="price-val">200 zł</span>
-        </div>
-        <div class="price-row">
           <div>
-            <span class="price-name">W antyramie</span>
-            <span class="price-note">✦ Polecane do stylu Cyberpunk</span>
+            <span class="price-name">Oprawiona — gotowa do powieszenia</span>
+            <span class="price-note">✦ oprawę dobieramy do stylu — cyberpunk najlepiej wygląda w antyramie</span>
           </div>
-          <span class="price-val">150 zł</span>
+          <span class="price-val">329 zł</span>
         </div>
         <div class="price-row">
-          <span class="price-name">Bez ramki</span>
-          <span class="price-val">100 zł</span>
+          <span class="price-name">Sam wydruk (do własnej oprawy)</span>
+          <span class="price-val">199 zł</span>
         </div>
       </div>
 
@@ -557,47 +551,22 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
         <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.25),transparent)"></div>
         <p class="price-label" style="opacity:.65">Format A3 · 30×42 cm</p>
         <div class="price-row">
-          <span class="price-name">W ramce drewnianej</span>
-          <span class="price-val">100 zł</span>
-        </div>
-        <div class="price-row">
           <div>
-            <span class="price-name">W antyramie</span>
-            <span class="price-note">✦ Polecane do stylu Cyberpunk</span>
+            <span class="price-name">Oprawiona — gotowa do powieszenia</span>
+            <span class="price-note">✦ oprawę dobieramy do stylu — cyberpunk najlepiej wygląda w antyramie</span>
           </div>
-          <span class="price-val">75 zł</span>
+          <span class="price-val">249 zł</span>
         </div>
         <div class="price-row">
-          <span class="price-name">Bez ramki</span>
-          <span class="price-val">50 zł</span>
+          <span class="price-name">Sam wydruk (do własnej oprawy)</span>
+          <span class="price-val">149 zł</span>
         </div>
       </div>
 
-    </div>
-
-    <!-- Gratis box -->
-    <div class="gratis-box reveal reveal-delay-2">
-      <div class="price-box-top" style="background:linear-gradient(to right,transparent,rgba(184,146,42,.6),transparent)"></div>
-      <div class="gratis-grid">
-        <div>
-          <p class="price-label" style="opacity:.8;margin-bottom:.9rem">Wliczone w cenę · Gratis</p>
-          <div class="gratis-row">
-            <span class="gratis-name">Nowy indywidualny styl kolorystyczny</span>
-            <span class="gratis-val">gratis</span>
-          </div>
-          <div class="gratis-row">
-            <span class="gratis-name">Nowa interpretacja mapy / własny pomysł</span>
-            <span class="gratis-val">gratis</span>
-          </div>
-        </div>
-        <p class="gratis-desc">
-          Masz pomysł na własny styl, nieoczywiste zestawienie kolorów albo zupełnie inną interpretację mapy? Chętnie to zrealizujemy — projekt graficzny wliczony jest w cenę wydruku. Napisz do nas, a razem wymyślimy coś wyjątkowego.
-        </p>
-      </div>
     </div>
 
     <div style="margin-top:2rem;font-size:.7rem;color:var(--warm-gray);opacity:.5;letter-spacing:.06em;line-height:1.7">
-      Koszt wysyłki kurierskiej doliczany jest do zamówienia. W razie pytań — napisz do nas, chętnie wycenimy indywidualnie.
+      Wysyłka kurierem wliczona w cenę. Masz pytanie? Napisz do nas.
     </div>
 
   </div>
@@ -612,15 +581,16 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
     <div class="contact-layout">
       <div>
         <p class="section-label reveal">Kontakt</p>
-        <h2 class="section-title reveal reveal-delay-1">Zamów mapę<br><em>lub zapytaj o projekt</em></h2>
+        <h2 class="section-title reveal reveal-delay-1">Zamów<br><em>swoją mapę</em></h2>
         <p class="section-desc reveal reveal-delay-2">
-          Chcesz kupić gotowy plakat, zamówić swoje miasto w jednym z dostępnych stylów, albo porozmawiać o czymś zupełnie innym? Napisz — odpowiemy w ciągu doby.
+          Chcesz kupić gotowy plakat albo swoje miasto w jednym z dostępnych stylów? Napisz — odpowiemy w ciągu doby.
         </p>
         <div class="contact-detail reveal reveal-delay-3">
           <div class="contact-item"><a href="mailto:kowalik.paul@gmail.com">kowalik.paul@gmail.com</a></div>
           <div class="contact-item">Czas realizacji: ok. 2 tygodnie</div>
-          <div class="contact-item">Wysyłka kurierem: wydrukowane w ramce lub bez ramki do samodzielnego oprawienia</div>
-          <div class="contact-item">Konsultacja bezpłatna</div>
+          <div class="contact-item">Oprawiona lub do samodzielnego oprawienia</div>
+          <div class="contact-item">Cena prosto z cennika</div>
+          <div class="contact-item">Płatność z góry — darmowa wysyłka po opłaceniu</div>
         </div>
       </div>
       <form class="order-form reveal reveal-delay-1" onsubmit="handleSubmit(event)" novalidate>
@@ -640,8 +610,6 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
             <option value="">Wybierz opcję</option>
             <option>Chcę kupić gotowy plakat z kolekcji</option>
             <option>Chcę swoje miasto w istniejącym stylu</option>
-            <option>Chcę projekt od zera / własny pomysł</option>
-            <option>Jeszcze nie wiem — chcę porozmawiać</option>
           </select>
         </div>
         <div class="form-row">
@@ -653,20 +621,19 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
             <label for="format">Format</label>
             <select id="format" name="format">
               <option value="">Wybierz format</option>
-              <option>30×40 cm</option>
-              <option>50×70 cm</option>
-              <option>60×80 cm</option>
-              <option>70×100 cm</option>
+              <option>A3 · 30×42 cm</option>
+              <option>A2 · 42×60 cm</option>
               <option>Nie wiem jeszcze</option>
             </select>
           </div>
         </div>
         <div class="form-group">
           <label for="message">Wiadomość</label>
-          <textarea id="message" name="message" placeholder="Opisz swój pomysł, okazję, styl jaki Cię interesuje albo zadaj pytanie..."></textarea>
+          <textarea id="message" name="message" placeholder="Napisz, które miasto i styl Cię interesują albo zadaj pytanie..."></textarea>
         </div>
-        <p class="form-note">Odpowiedź w ciągu 24 h (dni robocze). Przesłanie formularza to pierwszy krok — wycenę ustalimy razem po rozmowie.</p>
-        <button type="submit" class="form-submit">Wyślij wiadomość <span class="arrow">→</span></button>
+        <p class="form-note">Płacisz cenę z cennika powyżej. Po zamówieniu dostajesz link do płatności — drukujemy i wysyłamy po opłaceniu. Odpowiadamy w ciągu 24 h (dni robocze).</p>
+        <p class="form-error" id="formError" role="alert"></p>
+        <button type="submit" class="form-submit">Wyślij zamówienie <span class="arrow">→</span></button>
       </form>
     </div>
   </div>
@@ -689,7 +656,7 @@ footer{border-top:1px solid var(--line);padding:2.2rem 4rem;display:flex;align-i
   <span class="lb-caption" id="lb-cap"></span>
 </div>
 
-<div class="toast" id="toast">Wiadomość wysłana — odpiszemy wkrótce.</div>
+<div class="toast" id="toast">Zamówienie wysłane — odezwiemy się z linkiem do płatności.</div>
 
 <script>
 const reveals=document.querySelectorAll('.reveal');
@@ -699,23 +666,42 @@ document.querySelectorAll('.hero .reveal').forEach((el,i)=>setTimeout(()=>el.cla
 
 function handleSubmit(e){
   e.preventDefault();
+  const required=[['name','Imię i nazwisko'],['email','E-mail'],['intent','Czego szukasz'],['place','Miasto / miejsce'],['format','Format']];
+  const err=document.getElementById('formError');
+  const missing=[];
+  required.forEach(([id,label])=>{
+    const el=document.getElementById(id);
+    const ok=!!el.value.trim();
+    el.classList.toggle('invalid',!ok);
+    if(!ok)missing.push(label);
+  });
+  const emEl=document.getElementById('email');
+  const emVal=emEl.value.trim();
+  const emailBad=emVal && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emVal);
+  if(emailBad)emEl.classList.add('invalid');
+  if(missing.length||emailBad){
+    let m='';
+    if(missing.length)m='Uzupełnij wymagane pola: '+missing.join(', ')+'.';
+    if(emailBad)m=(m?m+' ':'')+'Sprawdź adres e-mail.';
+    err.textContent=m;
+    err.classList.add('show');
+    const firstBad=document.querySelector('.order-form .invalid');
+    if(firstBad)firstBad.focus();
+    return;
+  }
+  err.classList.remove('show');
   const n=document.getElementById('name').value.trim();
-  const em=document.getElementById('email').value.trim();
+  const em=emVal;
   const intent=document.getElementById('intent').value;
   const place=document.getElementById('place').value.trim();
   const fmt=document.getElementById('format').value;
   const msg=document.getElementById('message').value.trim();
-  if(!n||!em){
-    const f=!n?document.getElementById('name'):document.getElementById('email');
-    f.style.borderBottomColor='rgba(200,80,60,.8)';
-    setTimeout(()=>f.style.borderBottomColor='',2000);return;
-  }
   const body=[
     'Imię i nazwisko: '+n,
     'E-mail: '+em,
-    intent?'Czego szukasz: '+intent:'',
-    place?'Miasto / miejsce: '+place:'',
-    fmt?'Format: '+fmt:'',
+    'Czego szukasz: '+intent,
+    'Miasto / miejsce: '+place,
+    'Format: '+fmt,
     msg?'\nWiadomość:\n'+msg:'',
   ].filter(Boolean).join('\n');
   const subject=encodeURIComponent('Zamówienie mapy – '+n);
